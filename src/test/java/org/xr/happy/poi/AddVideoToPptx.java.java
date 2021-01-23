@@ -15,7 +15,8 @@
  *    See the License for the specific language governing permissions and
  *    limitations under the License.
  * ==================================================================== 
- */
+ *//*
+
 
 package org.apache.poi.xslf.usermodel;
 
@@ -61,6 +62,7 @@ import com.xuggle.xuggler.Global;
 import com.xuggle.xuggler.IContainer;
 import com.xuggle.xuggler.io.InputOutputStreamHandler;
 
+*/
 /**
  * Adding multiple videos to a slide
  * 
@@ -80,7 +82,8 @@ import com.xuggle.xuggler.io.InputOutputStreamHandler;
  * 
  * @see <a href="http://stackoverflow.com/questions/15197300/apache-poi-xslf-adding-movie-to-the-slide">Apache POI XSLF Adding movie to the slide</a>
  * @see <a href="http://apache-poi.1045710.n5.nabble.com/Question-about-embedded-video-in-PPTX-files-tt5718461.html">Question about embedded video in PPTX files</a>
- */
+ *//*
+
 public class AddVideoToPptx {
     static DecimalFormat df_time = new DecimalFormat("0.####");
 
@@ -249,3 +252,4 @@ public class AddVideoToPptx {
     }
 
 }
+*/
