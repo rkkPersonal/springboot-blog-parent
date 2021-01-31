@@ -9,6 +9,7 @@ import org.aspectj.lang.reflect.MethodSignature;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.core.annotation.Order;
 import org.springframework.web.context.request.RequestContextHolder;
 import org.springframework.web.context.request.ServletRequestAttributes;
 import org.xr.happy.common.annotation.Permission;
@@ -19,9 +20,11 @@ import java.util.Arrays;
 
 /**
  * @author Steven
+ * <annotation>@Order用来做切面排序的，数值小越先执行 </annotation>
  */
 @Configuration
 @Aspect
+@Order(1)
 public class AuthorizerAspect {
 
     private static final Logger logger = LoggerFactory.getLogger(AuthorizerAspect.class);
@@ -65,14 +68,6 @@ public class AuthorizerAspect {
             }
 
         }
-
-
- /*       // 记录下请求内容
-        logger.info("记录Controller日志");
-        logger.info("Url : " + request.getRequestURL().toString());
-        logger.info("HttpMethod : " + request.getMethod());
-        logger.info("IP : " + request.getRemoteAddr());
-        logger.info("ClassMethod : " + joinPoint.getSignature().getDeclaringTypeName() + "." + joinPoint.getSignature().getName());*/
 
 
         Object proceed = joinPoint.proceed();

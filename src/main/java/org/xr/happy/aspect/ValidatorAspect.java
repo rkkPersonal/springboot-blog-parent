@@ -3,6 +3,7 @@ package org.xr.happy.aspect;
 import org.apache.commons.lang3.StringUtils;
 import org.aspectj.lang.ProceedingJoinPoint;
 import org.aspectj.lang.Signature;
+import org.aspectj.lang.annotation.AfterReturning;
 import org.aspectj.lang.annotation.Around;
 import org.aspectj.lang.annotation.Aspect;
 import org.aspectj.lang.annotation.Pointcut;
@@ -10,6 +11,7 @@ import org.aspectj.lang.reflect.MethodSignature;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.core.annotation.Order;
 import org.springframework.web.context.request.RequestContextHolder;
 import org.springframework.web.context.request.ServletRequestAttributes;
 import org.xr.happy.common.annotation.NotEmpty;
@@ -28,6 +30,7 @@ import java.util.Arrays;
  */
 @Configuration
 @Aspect
+@Order(0)
 public class ValidatorAspect {
 
     private static final Logger logger = LoggerFactory.getLogger(ValidatorAspect.class);
@@ -112,4 +115,20 @@ public class ValidatorAspect {
 
         return proceed;
     }
+
+
+    /**
+     *
+     * @param result
+     */
+    @AfterReturning(
+            pointcut="org.xr.happy.aspect.ValidatorAspect.doValidator()",
+            returning="result")
+    public void doAccessCheck(Object result) {
+        // ...
+
+        logger.info("afterReturning advice:{}",result);
+    }
+
+
 }

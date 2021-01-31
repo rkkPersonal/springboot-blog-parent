@@ -17,7 +17,7 @@
  * ====================================================================
  */
 
-package org.apache.poi.examples.xslf;
+package org.xr.happy.poi;
 
 import java.awt.Color;
 import java.awt.Rectangle;

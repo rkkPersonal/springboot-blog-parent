@@ -22,7 +22,9 @@ import tk.mybatis.mapper.entity.Example;
 import javax.servlet.http.HttpServletRequest;
 import java.io.File;
 import java.io.IOException;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 import java.util.concurrent.locks.LockSupport;
 
 @RestController
@@ -30,6 +32,7 @@ public class JwtLoginController {
 
     private static final Logger logger = LoggerFactory.getLogger(JwtLoginController.class);
 
+    private static Map<String, User> cachMap = new HashMap<>();
     @Autowired
     private UserMapper userMapper;
     @Autowired
@@ -39,10 +42,17 @@ public class JwtLoginController {
     @GetMapping("jwtLogin")
     public Result jwtLogin(@Validator UserVo userVo) {
 
-
+        User users = null;
         User user = new User();
         user.setUsername("steven");
-        User users = userMapper.selectOne(user);
+        if (cachMap.containsKey(user.getUsername())) {
+            logger.debug("Obtain the user information from cach memory");
+            users = cachMap.get(user.getUsername());
+        } else {
+            users = userMapper.selectOne(user);
+            cachMap.put(user.getUsername(), users);
+        }
+
 
         Long id = System.currentTimeMillis();
 

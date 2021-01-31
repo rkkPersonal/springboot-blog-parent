@@ -22,6 +22,12 @@
         <dependency>
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-starter-amqp</artifactId>
+            <exclusions>
+                <exclusion>
+                    <groupId>org.springframework.boot</groupId>
+                    <artifactId>spring-boot-starter-logging</artifactId>
+                </exclusion>
+            </exclusions>
         </dependency>
         <dependency>
             <groupId>org.springframework.boot</groupId>
@@ -103,16 +109,21 @@
             <version>1.2.68</version>
         </dependency>
         <!--引入日志依赖 抽象层 与 实现层-->
+        <!--相当于桥接的API 查看 slf4j
+        官网地址：http://www.slf4j.org/
+        slf4j用户手册:http://www.slf4j.org/manual.html -->
         <dependency>
             <groupId>org.slf4j</groupId>
             <artifactId>slf4j-api</artifactId>
             <version>1.7.21</version>
         </dependency>
+        <!--真正的日志实现-->
         <dependency>
-            <groupId>org.slf4j</groupId>
-            <artifactId>slf4j-log4j12</artifactId>
-            <version>1.7.21</version>
+            <groupId>org.apache.logging.log4j</groupId>
+            <artifactId>log4j-slf4j-impl</artifactId>
         </dependency>
+
+
 
         <dependency>
             <groupId>io.jsonwebtoken</groupId>

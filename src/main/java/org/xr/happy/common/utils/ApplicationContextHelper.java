@@ -27,7 +27,7 @@ public class ApplicationContextHelper implements ApplicationContextAware {
 
     public static <T> T getBean(String className ,Class<T> tClass)  {
         if (tClass==null){
-            throw new RuntimeException("class  not foud");
+            throw new RuntimeException("class  not found");
         }
 
         T bean = applicationContext.getBean(className,tClass);

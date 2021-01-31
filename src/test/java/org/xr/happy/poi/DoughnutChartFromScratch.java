@@ -1,4 +1,4 @@
-/*
+package org.xr.happy.poi;/*
  *  ====================================================================
  *    Licensed to the Apache Software Foundation (ASF) under one or more
  *    contributor license agreements.  See the NOTICE file distributed with
@@ -17,7 +17,6 @@
  * ====================================================================
  */
 
-package org.apache.poi.examples.xslf;
 
 import org.apache.poi.ss.util.CellRangeAddress;
 import org.apache.poi.util.Units;
@@ -148,8 +147,8 @@ public final class DoughnutChartFromScratch {
         series1.setTitle(series[0], chart.setSheetTitle(series[valuesColumn - 1], valuesColumn));
 
         data.setVaryColors(true);
-        data.setHoleSize(42);
-        data.setFirstSliceAngle(90);
+  /*      data.setHoleSize(42);
+        data.setFirstSliceAngle(90);*/
         chart.plot(data);
 
         XDDFChartLegend legend = chart.getOrAddLegend();

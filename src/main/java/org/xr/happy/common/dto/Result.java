@@ -1,6 +1,9 @@
 package org.xr.happy.common.dto;
 
 
+import lombok.Data;
+
+@Data
 public class Result {
 
     private Integer code;

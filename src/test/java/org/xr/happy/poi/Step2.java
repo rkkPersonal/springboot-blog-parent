@@ -33,9 +33,24 @@ import org.apache.poi.xslf.usermodel.XSLFTextShape;
  * Create slides from pre-defined slide layouts
  */
 public final class Step2 {
-    private Step2() {}
+    private Step2() {
+    }
 
-    public static void main(String[] args) throws Exception{
+    /*
+       getSlideLayouts
+     * TITLE
+     * PIC_TX
+     * VERT_TX
+     * TWO_TX_TWO_OBJ
+     * BLANK
+     * VERT_TITLE_AND_TX
+     * TITLE_AND_CONTENT
+     * TITLE_ONLY
+     * SECTION_HEADER
+     * TWO_OBJ
+     * OBJ_TX
+     */
+    public static void main(String[] args) throws Exception {
         try (XMLSlideShow ppt = new XMLSlideShow()) {
 
             // first see what slide layouts are available by default

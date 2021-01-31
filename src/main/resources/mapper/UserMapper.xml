@@ -15,4 +15,5 @@
     <result column="update_by" jdbcType="VARCHAR" property="updateBy" />
   </resultMap>
 
+  <cache></cache>
 </mapper>

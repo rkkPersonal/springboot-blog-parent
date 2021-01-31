@@ -37,13 +37,23 @@ public final class Step1 {
     private Step1() {}
 
     public static void main(String[] args) throws Exception {
-        if(args.length == 0)  {
+     /*   if(args.length == 0)  {
             System.out.println("Input file is required");
             return;
-        }
+        }*/
 
-        FileInputStream fis = new FileInputStream(args[0]);
+        String file1= "step2.pptx";
+        String file2="slides.pptx";
+        String file3="text.pptx";
+        String file4="images.pptx";
+
+        // [width=720,height=540]
+
+        // width= 25.4cm ,height=19.05
+
+        FileInputStream fis = new FileInputStream(file2);
         try (XMLSlideShow ppt = new XMLSlideShow(fis)) {
+            System.out.println(ppt.getPageSize().toString());
             fis.close();
 
             for (XSLFSlide slide : ppt.getSlides()) {
@@ -55,7 +65,7 @@ public final class Step1 {
                         for (XSLFTextParagraph p : tsh) {
                             System.out.println("Paragraph level: " + p.getIndentLevel());
                             for (XSLFTextRun r : p) {
-                                System.out.println(r.getRawText());
+                                System.out.println("raw text:"+r.getRawText());
                                 System.out.println("  bold: " + r.isBold());
                                 System.out.println("  italic: " + r.isItalic());
                                 System.out.println("  underline: " + r.isUnderlined());
