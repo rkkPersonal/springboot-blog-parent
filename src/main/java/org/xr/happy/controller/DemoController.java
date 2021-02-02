@@ -12,7 +12,7 @@ public class DemoController {
 
     @GetMapping("/websocket")
     public String index() {
-        logger.info("websocket test ...");
+        logger.info("websocket test6666 ...");
         return "index";
     }
 }
