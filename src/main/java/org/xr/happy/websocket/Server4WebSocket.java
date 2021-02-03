@@ -59,7 +59,7 @@ public class Server4WebSocket {
         for (Session session1 : webSocketSet) {
             if (session == session1) {
                 Thread.sleep(5000);
-                String sendMsg = "宋心茹给任凯凯转账成功了";
+                String sendMsg = "转账成功了";
                 session1.getBasicRemote().sendText(sendMsg);
             }
         }
