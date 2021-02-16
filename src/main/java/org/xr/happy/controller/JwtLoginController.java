@@ -189,6 +189,8 @@ public class JwtLoginController {
             e.printStackTrace();
         }
 
+        redisTemplate.opsForValue().set("order_timeout", "如果30秒内未支付，订单将会超时，需要重新下单哦！！！", 10, TimeUnit.SECONDS);
+
         // Hash值 的操作使用方式
         redisTemplate.opsForHash().putAll(Token.USER_TOKEN + "-" + user.getId().toString(), map);
         redisTemplate.expire(Token.USER_TOKEN + "-" + user.getId().toString(), 10, TimeUnit.SECONDS);
