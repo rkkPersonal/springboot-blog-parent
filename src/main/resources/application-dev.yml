@@ -71,3 +71,10 @@ spring:
     connection-timeout: 150000
 
 
+---
+com:
+  boy:
+    face: beautiful
+    height: 170
+    name: steven
+    nick-name: kaikai

@@ -1,4 +1,6 @@
-package org.xr.happy.poi;/*
+/*
+package org.xr.happy.poi;*/
+/*
  *  ====================================================================
  *    Licensed to the Apache Software Foundation (ASF) under one or more
  *    contributor license agreements.  See the NOTICE file distributed with
@@ -15,7 +17,8 @@ package org.xr.happy.poi;/*
  *    See the License for the specific language governing permissions and
  *    limitations under the License.
  * ====================================================================
- */
+ *//*
+
 
 
 import org.apache.poi.ss.util.CellRangeAddress;
@@ -50,9 +53,11 @@ import java.nio.file.Paths;
 import java.util.ArrayList;
 import java.util.List;
 
+*/
 /**
  * Build a chart without reading template file
- */
+ *//*
+
 @SuppressWarnings({"java:S106","java:S4823","java:S1192"})
 public final class DoughnutChartFromScratch {
     private DoughnutChartFromScratch() {}
@@ -147,8 +152,10 @@ public final class DoughnutChartFromScratch {
         series1.setTitle(series[0], chart.setSheetTitle(series[valuesColumn - 1], valuesColumn));
 
         data.setVaryColors(true);
-  /*      data.setHoleSize(42);
-        data.setFirstSliceAngle(90);*/
+  */
+/*      data.setHoleSize(42);
+        data.setFirstSliceAngle(90);*//*
+
         chart.plot(data);
 
         XDDFChartLegend legend = chart.getOrAddLegend();
@@ -164,3 +171,4 @@ public final class DoughnutChartFromScratch {
     private static final int COLUMN_COUNTRIES = 1;
     private static final int COLUMN_SPEAKERS = 2;
 }
+*/

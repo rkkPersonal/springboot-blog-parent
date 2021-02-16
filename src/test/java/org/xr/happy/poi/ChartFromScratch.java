@@ -15,7 +15,8 @@
  *    See the License for the specific language governing permissions and
  *    limitations under the License.
  * ====================================================================
- */
+ *//*
+
 
 package org.xr.happy.poi;
 
@@ -53,9 +54,11 @@ import org.apache.poi.xslf.usermodel.XSLFGraphicFrame;
 import org.apache.poi.xslf.usermodel.XSLFShape;
 import org.apache.poi.xslf.usermodel.XSLFSlide;
 
+*/
 /**
  * Build a chart without reading template file
- */
+ *//*
+
 @SuppressWarnings({"java:S106","java:S4823","java:S1192"})
 public final class ChartFromScratch {
     private ChartFromScratch() {}
@@ -185,3 +188,4 @@ public final class ChartFromScratch {
     private static final int COLUMN_COUNTRIES = 1;
     private static final int COLUMN_SPEAKERS = 2;
 }
+*/

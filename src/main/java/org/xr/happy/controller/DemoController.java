@@ -15,4 +15,12 @@ public class DemoController {
         logger.info("websocket test6666 ...");
         return "index";
     }
+
+
+    @GetMapping("/test")
+    public String webs() {
+        logger.info("websocket test6666 ...");
+        return "webs";
+    }
+
 }

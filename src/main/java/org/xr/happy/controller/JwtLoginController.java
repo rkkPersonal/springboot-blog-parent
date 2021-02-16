@@ -2,15 +2,31 @@ package org.xr.happy.controller;
 
 
 import com.alibaba.fastjson.JSON;
+import com.fasterxml.jackson.core.JsonProcessingException;
+import com.fasterxml.jackson.databind.ObjectMapper;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.amqp.rabbit.core.RabbitTemplate;
 import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.dao.DataAccessException;
+import org.springframework.data.domain.Range;
+import org.springframework.data.redis.connection.RedisConnection;
+import org.springframework.data.redis.connection.stream.RecordId;
+import org.springframework.data.redis.core.RedisCallback;
+import org.springframework.data.redis.core.RedisTemplate;
+import org.springframework.expression.Expression;
+import org.springframework.expression.spel.standard.SpelExpressionParser;
+import org.springframework.expression.spel.support.StandardEvaluationContext;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
+import org.xr.Boy;
+import org.xr.boy.starter.BoyProperties;
 import org.xr.happy.common.annotation.Permission;
+import org.xr.happy.common.annotation.RedisCache;
 import org.xr.happy.common.annotation.Validator;
+import org.xr.happy.common.constant.Token;
 import org.xr.happy.common.dto.Result;
 import org.xr.happy.common.exception.ServerException;
 import org.xr.happy.common.utils.JwtUtil;
@@ -22,9 +38,11 @@ import tk.mybatis.mapper.entity.Example;
 import javax.servlet.http.HttpServletRequest;
 import java.io.File;
 import java.io.IOException;
+import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.concurrent.TimeUnit;
 import java.util.concurrent.locks.LockSupport;
 
 @RestController
@@ -37,10 +55,16 @@ public class JwtLoginController {
     private UserMapper userMapper;
     @Autowired
     private RabbitTemplate rabbitTemplate;
+    @Autowired
+    private Boy boy;
+    @Autowired
+    private RedisTemplate redisTemplate;
 
     @Permission(role = "admin")
-    @GetMapping("jwtLogin")
+    @GetMapping("/jwtLogin")
     public Result jwtLogin(@Validator UserVo userVo) {
+
+        logger.info("boy is :{}", boy.toString());
 
         User users = null;
         User user = new User();
@@ -123,8 +147,73 @@ public class JwtLoginController {
 
     }
 
+
+    @GetMapping("/cache")
+    @RedisCache(value = "uname", key = "#userId")
+    public Result redisCache(String userId) {
+
+        User user = new User();
+        user.setId(1);
+        user.setUsername("steven");
+        user.setPassword("123456");
+        user.setEmail("17635841699@163.com");
+        user.setCreateTime(new Date());
+        user.setCreateBy("steven");
+        user.setUpdateTime(new Date());
+        user.setUpdateBy("sxr");
+        logger.info("Get user info from db.......");
+
+        return Result.success(user);
+    }
+
+    @GetMapping("/redis")
+    public Result redis() {
+
+        User user = new User();
+        user.setId(1);
+        user.setUsername("steven");
+        user.setPassword("123456");
+        user.setEmail("17635841699@163.com");
+        user.setCreateTime(new Date());
+        user.setCreateBy("steven");
+        user.setUpdateTime(new Date());
+        user.setUpdateBy("sxr");
+
+        ObjectMapper objectMapper = new ObjectMapper();
+        Map map = null;
+        try {
+            map = objectMapper.readValue(objectMapper.writeValueAsString(user), Map.class);
+        } catch (JsonProcessingException e) {
+            e.printStackTrace();
+        }
+
+        // Hash值 的操作使用方式
+        redisTemplate.opsForHash().putAll(Token.USER_TOKEN + "-" + user.getId().toString(), map);
+        redisTemplate.expire(Token.USER_TOKEN + "-" + user.getId().toString(), 10, TimeUnit.SECONDS);
+
+        Object o = redisTemplate.opsForHash().get(Token.USER_TOKEN + "-" + user.getId().toString(), "username");
+
+
+        // stream 存储方式
+        RecordId mystream = redisTemplate.opsForStream().add("mystream", map);
+        String value = mystream.getValue();
+        System.out.println(value);
+
+
+        List mystream1 = redisTemplate.opsForStream().range("mystream", Range.unbounded());
+        System.out.println(mystream1);
+
+        redisTemplate.execute(new RedisCallback() {
+            @Override
+            public Object doInRedis(RedisConnection redisConnection) throws DataAccessException {
+                return null;
+            }
+        });
+        return Result.success(o);
+    }
+
     public static void main(String[] args) {
-        LockSupport.unpark(Thread.currentThread());
+     /*   LockSupport.unpark(Thread.currentThread());
 
         LockSupport.park();
 
@@ -138,7 +227,22 @@ public class JwtLoginController {
 
         LockSupport.park();
 
-        System.out.println("hello");
+        System.out.println("hello");*/
+
+
+        String ls = "'hello:'+#userId";
+        SpelExpressionParser spelExpressionParser = new SpelExpressionParser();
+
+        Expression expression = spelExpressionParser.parseExpression(ls);
+
+
+        StandardEvaluationContext standardEvaluationContext = new StandardEvaluationContext();
+
+        standardEvaluationContext.setVariable("userId", "steven");
+
+
+        String string = expression.getValue(standardEvaluationContext).toString();
+        System.out.println(string);
 
     }
 }
