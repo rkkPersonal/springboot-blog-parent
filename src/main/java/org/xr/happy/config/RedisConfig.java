@@ -16,6 +16,7 @@ import org.springframework.data.redis.listener.RedisMessageListenerContainer;
 import org.springframework.data.redis.serializer.Jackson2JsonRedisSerializer;
 import org.springframework.data.redis.serializer.StringRedisSerializer;
 import org.xr.happy.common.constant.RedisKey;
+import org.xr.happy.listener.OrderTimeoutListener;
 import org.xr.happy.listener.SmsSendListener;
 
 import java.util.Arrays;
@@ -27,6 +28,7 @@ public class RedisConfig extends CachingConfigurerSupport {
 
     /**
      * redisTemplate 配置
+     *
      * @param factory
      * @return
      */
@@ -64,8 +66,13 @@ public class RedisConfig extends CachingConfigurerSupport {
     public RedisMessageListenerContainer smsMessageListener(RedisConnectionFactory redisConnectionFactory) {
         RedisMessageListenerContainer container = new RedisMessageListenerContainer();
         container.setConnectionFactory(redisConnectionFactory);
+
         SmsSendListener smsSendListener = new SmsSendListener();
         container.addMessageListener(smsSendListener, Arrays.asList(new ChannelTopic(RedisKey.TEST_CHANNEL_NAME)));
+
+        OrderTimeoutListener orderTimeoutListener = new OrderTimeoutListener();
+        container.addMessageListener(orderTimeoutListener, Arrays.asList(new ChannelTopic(RedisKey.ORDER_TIMEOUT_CHANNEL_NAME)));
+
         return container;
     }
 
@@ -125,7 +132,6 @@ public class RedisConfig extends CachingConfigurerSupport {
     public ZSetOperations<String, Object> zSetOperations(RedisTemplate<String, Object> redisTemplate) {
         return redisTemplate.opsForZSet();
     }
-
 
 
 }
