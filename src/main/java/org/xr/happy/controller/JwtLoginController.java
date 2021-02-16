@@ -26,6 +26,7 @@ import org.xr.boy.starter.BoyProperties;
 import org.xr.happy.common.annotation.Permission;
 import org.xr.happy.common.annotation.RedisCache;
 import org.xr.happy.common.annotation.Validator;
+import org.xr.happy.common.constant.RedisKey;
 import org.xr.happy.common.constant.Token;
 import org.xr.happy.common.dto.Result;
 import org.xr.happy.common.exception.ServerException;
@@ -38,6 +39,7 @@ import tk.mybatis.mapper.entity.Example;
 import javax.servlet.http.HttpServletRequest;
 import java.io.File;
 import java.io.IOException;
+import java.nio.charset.Charset;
 import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
@@ -203,12 +205,18 @@ public class JwtLoginController {
         List mystream1 = redisTemplate.opsForStream().range("mystream", Range.unbounded());
         System.out.println(mystream1);
 
-        redisTemplate.execute(new RedisCallback() {
+        Object execute = redisTemplate.execute(new RedisCallback<String>() {
             @Override
-            public Object doInRedis(RedisConnection redisConnection) throws DataAccessException {
-                return null;
+            public String doInRedis(RedisConnection redisConnection) throws DataAccessException {
+
+                String sendMessage = "转账成功，请注意查收 。。。。";
+
+                redisConnection.publish(RedisKey.TEST_CHANNEL_NAME.getBytes(), sendMessage.getBytes(Charset.forName("utf-8")));
+
+                return "success";
             }
         });
+
         return Result.success(o);
     }
 
