@@ -74,7 +74,7 @@ public class RedisCacheAspect {
 
             if (userInfo!=null){
                 logger.info("Get User Info from redis cache..........");
-                return Result.success(userInfo);
+                return userInfo;
             }
 
             // 2、不存在则执行方法
