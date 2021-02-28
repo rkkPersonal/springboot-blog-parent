@@ -75,6 +75,9 @@ spring:
     template:
       mandatory: true
     connection-timeout: 150000
+    listener:
+      direct:
+        acknowledge-mode: manual
 
 
 ---

@@ -44,7 +44,10 @@ import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.concurrent.ExecutorService;
+import java.util.concurrent.Executors;
 import java.util.concurrent.TimeUnit;
+import java.util.concurrent.atomic.AtomicInteger;
 import java.util.concurrent.locks.LockSupport;
 
 @RestController
@@ -61,6 +64,13 @@ public class JwtLoginController {
     private Boy boy;
     @Autowired
     private RedisTemplate redisTemplate;
+
+    private static final int CURRENT_COUNTS = 200;
+    private static AtomicInteger atomicInteger = new AtomicInteger();
+
+    public static ExecutorService executorService = Executors.newFixedThreadPool(CURRENT_COUNTS);
+
+
 
     @Permission(role = "admin")
     @GetMapping("/jwtLogin")
@@ -105,10 +115,16 @@ public class JwtLoginController {
      */
     @GetMapping("sender")
     public void jwtLogin() {
-
-        rabbitTemplate.convertAndSend("xr-blog-love", "this is a test for rabbitmq!!!!");
+        rabbitTemplate.convertAndSend("xr-blog-love", "1");
         logger.info("消息发送成功");
 
+  /*      for (int i = 0; i < 50000; i++) {
+            executorService.submit(() -> {
+                rabbitTemplate.convertAndSend("xr-blog-love", "this is a test for rabbitmq!!!!" + atomicInteger.getAndIncrement());
+
+            });
+
+        }*/
     }
 
 

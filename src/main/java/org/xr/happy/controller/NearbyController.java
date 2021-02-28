@@ -21,7 +21,7 @@ public class NearbyController {
     @Autowired
     private RedisTemplate redisTemplate;
 
-    @GetMapping
+    @GetMapping("/addgeo")
     public Result addGeo(Double longitude, Double latitude, String userId) {
 
         Point point = new Point(longitude, latitude);
@@ -30,7 +30,7 @@ public class NearbyController {
     }
 
 
-    @GetMapping
+    @GetMapping("/nearby")
     public Result nearby(Double longitude, Double latitude,
                          @RequestParam(defaultValue = "3000") Double range,
                          @RequestParam(defaultValue = "5") Long count) {

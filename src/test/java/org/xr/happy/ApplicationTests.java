@@ -9,29 +9,85 @@ import org.apache.poi.openxml4j.opc.PackagePart;
 import org.apache.poi.xslf.usermodel.XSLFSlideShow;
 import org.apache.poi.xssf.usermodel.XSSFWorkbook;
 import org.apache.poi.xwpf.usermodel.XWPFDocument;
-import org.elasticsearch.monitor.jvm.JvmStats;
 import org.junit.jupiter.api.Test;
+import org.junit.runner.RunWith;
+import org.springframework.amqp.rabbit.core.RabbitTemplate;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
-import org.springframework.web.client.RestTemplate;
+import org.springframework.data.redis.core.RedisTemplate;
+import org.springframework.test.context.junit4.SpringRunner;
+import org.xr.happy.common.utils.ApplicationContextHelper;
+import org.xr.happy.config.RedisLock;
 
 import java.io.InputStream;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.concurrent.*;
+import java.util.concurrent.atomic.AtomicInteger;
 
-@SpringBootTest
+@SpringBootTest(classes = Application.class)
+@RunWith(value = SpringRunner.class)
 class ApplicationTests {
 
     @Autowired
-     private RestTemplate restTemplate;
+    private static RabbitTemplate rabbitTemplate;
+    @Autowired
+    private RedisTemplate redisTemplate;
 
-    private static final int CURRENT_COUNTS=300;
+
+    private static int CURRENT_COUNTS = 200;
+    private static AtomicInteger atomicInteger = new AtomicInteger();
+
+    public static ExecutorService executorService = Executors.newFixedThreadPool(CURRENT_COUNTS);
+
+
+    @Test
+    public void bachSendMq() {
+
+        String key = "ORDER_KEY_12345678";
+        ThreadPoolExecutor threadPoolExecutor = new ThreadPoolExecutor(5, 10, 30, TimeUnit.MICROSECONDS, new LinkedBlockingDeque<Runnable>());
+
+        CountDownLatch countDownLatch=new CountDownLatch(5);
+        for (int i = 0; i < 5; i++) {
+            threadPoolExecutor.submit(() -> {
+                System.out.println(Thread.currentThread().getName() );
+                RedisLock redisLock = new RedisLock(redisTemplate);
+                boolean lock = redisLock.lock(key);
+
+                try {
+
+                    if (lock) {
+                        try {
+                            Thread.sleep(20000);
+                            System.out.println(Thread.currentThread().getName() + "-加锁成功");
+                            countDownLatch.countDown();
+                        } catch (Exception e) {
+                            e.printStackTrace();
+                        }
+                        // todo
+
+                    }
+                } finally {
+                    redisLock.unLock(key);
+                    System.out.println(Thread.currentThread().getName() + "-解锁");
+                }
+
+
+            });
+        }
+
+        try {
+            countDownLatch.await();
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
+    }
+
     @Test
     void contextLoads() {
 
         List<String> list = new ArrayList<>();
         for (int i = 0; i < 10; i++) {
-
             list.add(i + "");
         }
 
@@ -65,15 +121,20 @@ class ApplicationTests {
     }
 
     public static void main(String[] args) throws Exception {
-        List<String> list = new ArrayList<>();
-        for (int i = 0; i < 10; i++) {
 
-            list.add(i + "");
+
+        for (int i = 0; i < 5000; i++) {
+            System.out.println(i);
+            executorService.submit(() -> {
+                System.out.println("-------");
+                if (rabbitTemplate == null) {
+                    rabbitTemplate = ApplicationContextHelper.getBean(RabbitTemplate.class);
+                }
+                rabbitTemplate.convertAndSend("xr-blog-love", "this is a test for rabbitmq!!!!" + atomicInteger.getAndIncrement());
+
+            });
+
         }
-
-        List<List<String>> lists = splitList(list, 3);
-
-        System.out.println(lists);
 /*
         ClassPathXmlApplicationContext context=new ClassPathXmlApplicationContext("");
 

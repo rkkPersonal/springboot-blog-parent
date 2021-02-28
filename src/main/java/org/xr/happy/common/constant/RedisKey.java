@@ -12,4 +12,6 @@ public class RedisKey {
     public static final  String ORDER_TIMEOUT_CHANNEL_NAME = "__keyspace@0__:order_timeout";
 
     public static final String GEO_KEY = "user_geo";
+
+    public static final String USER_INFO_KEY = "USER_INFO_KEY";
 }
