@@ -25,6 +25,8 @@ import java.util.concurrent.Semaphore;
 import java.util.concurrent.TimeUnit;
 
 /**
+ * 该注解添加了限流和防止 缓存失效雪崩
+ *
  * @author Steven
  */
 @Component
