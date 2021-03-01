@@ -13,5 +13,6 @@ public class RedisKey {
 
     public static final String GEO_KEY = "user_geo";
 
-    public static final String USER_INFO_KEY = "USER_INFO_KEY";
+    public static final String USER_INFO_KEY = "user_info_key";
+    public static final String USER_BLOOM_FILTER = "user_bloom_filter";
 }

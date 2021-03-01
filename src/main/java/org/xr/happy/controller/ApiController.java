@@ -5,6 +5,7 @@ import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.redis.core.RedisTemplate;
 import org.springframework.web.bind.annotation.*;
+import org.xr.happy.common.constant.RedisKey;
 import org.xr.happy.common.dto.Result;
 import org.xr.happy.common.dto.Room;
 import org.xr.happy.mapper.UserMapper;
@@ -34,7 +35,7 @@ public class ApiController {
             int i = id.hashCode();
 
             long index = (long) (i / Math.pow(2, 32));
-            redisTemplate.opsForValue().setBit("user boolm filter", index, true);
+            redisTemplate.opsForValue().setBit(RedisKey.USER_BLOOM_FILTER, index, true);
         });
 
 
@@ -54,7 +55,7 @@ public class ApiController {
 
         long index = (long) (i / Math.pow(2, 32));
 
-        Boolean result = redisTemplate.opsForValue().getBit("user boolm filter", index);
+        Boolean result = redisTemplate.opsForValue().getBit(RedisKey.USER_BLOOM_FILTER, index);
         if (!result) {
             logger.info("用户不存在:" + userId);
 
