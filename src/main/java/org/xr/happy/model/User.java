@@ -5,6 +5,7 @@ import javax.persistence.*;
 
 public class User {
     @Id
+    @GeneratedValue(generator = "JDBC",strategy = GenerationType.IDENTITY)
     private Integer id;
 
     private String username;
