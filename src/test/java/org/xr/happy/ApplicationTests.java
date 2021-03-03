@@ -15,12 +15,17 @@ import org.springframework.amqp.rabbit.core.RabbitTemplate;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.data.redis.core.RedisTemplate;
+import org.springframework.http.ResponseEntity;
 import org.springframework.test.context.junit4.SpringRunner;
+import org.springframework.web.client.RestTemplate;
 import org.xr.happy.common.utils.ApplicationContextHelper;
 import org.xr.happy.config.RedisLock;
+import org.xr.happy.model.User;
+import org.xr.happy.service.UserService;
 
 import java.io.InputStream;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 import java.util.concurrent.*;
 import java.util.concurrent.atomic.AtomicInteger;
@@ -30,15 +35,67 @@ import java.util.concurrent.atomic.AtomicInteger;
 class ApplicationTests {
 
     @Autowired
-    private static RabbitTemplate rabbitTemplate;
+    private  RabbitTemplate rabbitTemplate;
     @Autowired
     private RedisTemplate redisTemplate;
+    @Autowired
+    private UserService userService;
+    @Autowired
+    private RestTemplate restTemplate;
 
 
     private static int CURRENT_COUNTS = 200;
     private static AtomicInteger atomicInteger = new AtomicInteger();
 
     public static ExecutorService executorService = Executors.newFixedThreadPool(CURRENT_COUNTS);
+
+    @Test
+    public void testRestTemplate() {
+
+        String url = "http://localhost:8080/sender";
+        ResponseEntity<String> forEntity = restTemplate.getForEntity(url, String.class);
+
+        System.out.println(forEntity.toString());
+    }
+
+    @Test
+    public void test2() {
+
+        userService.createUser(205);
+    }
+
+    @Test
+    public void testTransaction() {
+
+        ExecutorService submit = Executors.newFixedThreadPool(20);
+
+        CyclicBarrier cyclicBarrier = new CyclicBarrier(20);
+        for (int i = 0; i < 20; i++) {
+
+            int c = i;
+            submit.submit(new Runnable() {
+                @Override
+                public void run() {
+
+                    try {
+                        cyclicBarrier.await();
+
+                    } catch (Exception e) {
+                        e.printStackTrace();
+                    }
+                    userService.createUser(c);
+                }
+            });
+
+        }
+
+
+        try {
+            Thread.sleep(60000);
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
+    }
 
 
     @Test
@@ -47,10 +104,10 @@ class ApplicationTests {
         String key = "ORDER_KEY_12345678";
         ThreadPoolExecutor threadPoolExecutor = new ThreadPoolExecutor(5, 10, 30, TimeUnit.MICROSECONDS, new LinkedBlockingDeque<Runnable>());
 
-        CountDownLatch countDownLatch=new CountDownLatch(5);
+        CountDownLatch countDownLatch = new CountDownLatch(5);
         for (int i = 0; i < 5; i++) {
             threadPoolExecutor.submit(() -> {
-                System.out.println(Thread.currentThread().getName() );
+                System.out.println(Thread.currentThread().getName());
                 RedisLock redisLock = new RedisLock(redisTemplate);
                 boolean lock = redisLock.lock(key);
 
@@ -122,19 +179,6 @@ class ApplicationTests {
 
     public static void main(String[] args) throws Exception {
 
-
-        for (int i = 0; i < 5000; i++) {
-            System.out.println(i);
-            executorService.submit(() -> {
-                System.out.println("-------");
-                if (rabbitTemplate == null) {
-                    rabbitTemplate = ApplicationContextHelper.getBean(RabbitTemplate.class);
-                }
-                rabbitTemplate.convertAndSend("xr-blog-love", "this is a test for rabbitmq!!!!" + atomicInteger.getAndIncrement());
-
-            });
-
-        }
 /*
         ClassPathXmlApplicationContext context=new ClassPathXmlApplicationContext("");
 
