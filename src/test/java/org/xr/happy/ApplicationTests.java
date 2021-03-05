@@ -50,6 +50,11 @@ class ApplicationTests {
     public static ExecutorService executorService = Executors.newFixedThreadPool(CURRENT_COUNTS);
 
     @Test
+    public void testTransactionMq(){
+        rabbitTemplate.convertAndSend("xr-blog-love", "1");
+    }
+
+    @Test
     public void testRestTemplate() {
 
         String url = "http://localhost:8080/sender";
@@ -61,7 +66,7 @@ class ApplicationTests {
     @Test
     public void test2() {
 
-        userService.createUser(205);
+        userService.createUser(206);
     }
 
     @Test

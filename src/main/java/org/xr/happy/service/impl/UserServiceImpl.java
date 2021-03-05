@@ -2,6 +2,7 @@ package org.xr.happy.service.impl;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.amqp.rabbit.core.RabbitTemplate;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Propagation;
@@ -19,6 +20,8 @@ public class UserServiceImpl implements UserService {
 
 
     @Autowired
+    private RabbitTemplate rabbitTemplate;
+    @Autowired
     private UserMapper userMapper;
 
     @Transactional(propagation = Propagation.REQUIRED)
@@ -35,6 +38,7 @@ public class UserServiceImpl implements UserService {
         int insert = userMapper.insert(user);
 
         // 这个之所以可以搜到，是因为 在同一个事务中可以查到数据，
+/*
         User users = new User();
         users.setId(user.getId());
         User user1 = userMapper.selectOne(users);
@@ -51,12 +55,18 @@ public class UserServiceImpl implements UserService {
                 User userByUserId = findUserByUserId(user.getId());
             }
         }).start();
+*/
+        if (insert>0){
+            logger.info("插入成功：userId:"+user.getId());
+            rabbitTemplate.convertAndSend("xr-blog-love", user.getId());
+
+        }
 
         //simulated the delay commit the transaction, the  async will not be query the data ,because the transaction is not commit and
         // the async is o new thread ,different transaction ,so must commit ,then can query the data,
         //
         try {
-            Thread.sleep(2000);
+            Thread.sleep(5000);
         } catch (InterruptedException e) {
             e.printStackTrace();
         }
