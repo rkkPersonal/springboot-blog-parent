@@ -1,12 +1,19 @@
 package org.xr.happy.common.vo;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
+import lombok.AllArgsConstructor;
 import lombok.Builder;
+import lombok.Data;
+import lombok.NoArgsConstructor;
 import org.xr.happy.common.annotation.NotEmpty;
 
 import java.lang.reflect.Constructor;
 import java.lang.reflect.Field;
 
+@Data
+@AllArgsConstructor
+@NoArgsConstructor
+@Builder
 public class UserVo {
 
     @NotEmpty(msg = "userId 不能为空", required = true)
@@ -22,8 +29,6 @@ public class UserVo {
 
     private String userUniqueToken;
 
-    public UserVo() {
-    }
 
     public Long getUserId() {
         return userId;

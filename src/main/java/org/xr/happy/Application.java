@@ -9,6 +9,7 @@ import springfox.documentation.oas.annotations.EnableOpenApi;
 import tk.mybatis.spring.annotation.MapperScan;
 
 @SpringBootApplication
+@ComponentScan(basePackages = "org.xr")
 @EnableOpenApi
 @MapperScan(basePackages = "org.xr.happy.mapper")
 public class Application {

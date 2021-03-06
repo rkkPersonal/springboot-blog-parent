@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>WebSocket Chat Application</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <link href="../bootstrap.min.css" rel="stylesheet">
+    <link href="../style.css" rel="stylesheet">
+    <script src="../jquery-1.10.2.min.js"></script>
+    <script src="../app.js"></script>
+    <script src="@{/webjars/boot}"></script>
+</head>
+
+<script type="text/javascript">
+
+    window.onload = function send() {
+   /*     setInterval(function () {
+        confirm("9999便宜豪迈")
+        },5000,"hello");*/
+
+    }
+
+</script>
+<body class="container">
+<a href="https://www.baidu.com">百度一下</a>
+<h1 th:onclick="send()">用户详情</h1>
+<h1 class="time"></h1>
+
+<div class="container">
+    <table class="table-view">
+        <tr>
+            <th>用户Id</th>
+            <th>用户名</th>
+            <th>密码</th>
+            <th>邮箱</th>
+            <th>唯一标识</th>
+        </tr>
+        <tr th:each="prod : ${userList}">
+            <td th:text="${prod.userId}"></td>
+            <td th:text="${prod.username}"></td>
+            <td th:text="${prod.password}"></td>
+            <td th:text="${prod.email}"></td>
+            <td th:text="${prod.userUniqueToken}"></td>
+        </tr>
+    </table>
+</div>
+
+<p>
+    <a href="../home.html" th:href="@{/}">Return to home</a>
+</p>
+</body>
+
+</html>

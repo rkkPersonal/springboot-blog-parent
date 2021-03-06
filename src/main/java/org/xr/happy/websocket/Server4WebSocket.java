@@ -1,13 +1,21 @@
 package org.xr.happy.websocket;
 
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
+import org.xr.happy.common.constant.MessageType;
+import org.xr.happy.service.Server;
 
+import javax.websocket.OnClose;
 import javax.websocket.OnMessage;
 import javax.websocket.OnOpen;
 import javax.websocket.Session;
 import javax.websocket.server.PathParam;
 import javax.websocket.server.ServerEndpoint;
+import java.io.IOException;
+import java.util.Random;
 import java.util.concurrent.CopyOnWriteArraySet;
 
 /**
@@ -15,55 +23,103 @@ import java.util.concurrent.CopyOnWriteArraySet;
  */
 @Component
 @ServerEndpoint(value = "/serverForWebSocket/{id}")
-public class Server4WebSocket {
+public class Server4WebSocket implements Server {
+
+
+    private static final Logger logger = LoggerFactory.getLogger(Server4WebSocket.class);
 
     private Session session;
 
 
-    private static CopyOnWriteArraySet<Session> webSocketSet = new CopyOnWriteArraySet<Session>();
+    private static CopyOnWriteArraySet<Server4WebSocket> webSocketSet = new CopyOnWriteArraySet<Server4WebSocket>();
 
     /**
      * 当websocket 连接上的时候 会监听到连接上了
-     * @param id  请求链接上要传的值，{id}
+     *
+     * @param id      请求链接上要传的值，{id}
      * @param session
      */
     @OnOpen //事件 --登录的人.
-    public void onopen(@PathParam("id")String id, Session session) {
+    public void onopen(@PathParam("id") String id, Session session) {
         this.session = session;
         System.out.println("seesionId为" + session.getId());
-        webSocketSet.add(session);
+        webSocketSet.add(this);
         System.out.println("当前的连接数量为:" + webSocketSet.size());
 
-        System.out.println("我的id是："+id);
+        System.out.println("我的id是：" + id);
     }
 
+
+    @OnClose
+    public void onclose(Session session) {
+
+        webSocketSet.remove(session);
+        webSocketSet.remove(this);
+
+        logger.info(session.getId() + "退出成功，" + "当前连接人数：" + webSocketSet.size());
+
+    }
 
     /**
      * 发送消息，如果休消息有变化，就推送数据到客户端
      *
-     * @param msg  文本框中要传的值
+     * @param msg     文本框中要传的值
      * @param session
      */
     @OnMessage
     public void onMessage(String msg, Session session) {
-        System.out.println(msg);
+        logger.info("收到消息：" + msg);
         try {
-            sendMessage(msg, session);
+            switch (msg) {
+                case MessageType.TO_USER:
+                    sendMessage(msg, session);
+                    break;
+                case MessageType.TO_SHARE:
+                    groupMessage(msg, session);
+                    break;
+                default:
+                    break;
+            }
         } catch (Exception e) {
-            e.printStackTrace();
+            logger.error("error :", e.getMessage());
         }
     }
 
     //推送
+    public void groupMessage(String msg, Session session) throws Exception {
+        for (Server4WebSocket session1 : webSocketSet) {
+            Thread.sleep(5000);
+            Random random = new Random();
+            int money = random.nextInt(100000);
+            String sendMsg = "转账成功了" + money + "元";
+            session1.session.getBasicRemote().sendText(sendMsg);
+        }
+
+    }
+
+    //推送
     public void sendMessage(String msg, Session session) throws Exception {
-        for (Session session1 : webSocketSet) {
+        for (Server4WebSocket session1 : webSocketSet) {
             if (session == session1) {
                 Thread.sleep(5000);
                 String sendMsg = "转账成功了";
-                session1.getBasicRemote().sendText(sendMsg);
+                session1.session.getBasicRemote().sendText(sendMsg);
             }
         }
 
+    }
+
+
+    @Override
+    public void sendMessage(String param, String textMessage) {
+        try {
+            for (Server4WebSocket session1 : webSocketSet) {
+
+                session1.session.getBasicRemote().sendText(textMessage);
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
     }
 }
 

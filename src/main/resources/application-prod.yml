@@ -1,35 +1,47 @@
 spring:
-  profiles: prod
+  profiles: dev
+  application:
+    name: websocket-demo
 ---
 server:
-  port: 8082
+  port: 8081
 spring:
-  datasource:                                           # 数据源的相关配置
+  datasource: # 数据源的相关配置
     type: com.zaxxer.hikari.HikariDataSource          # 数据源类型：HikariCP
-    driver-class-name: com.mysql.jdbc.Driver          # mysql驱动
-    #    url: jdbc:mysql://localhost:3306/foodie-shop-dev?useUnicode=true&characterEncoding=UTF-8&autoReconnect=true
+    driver-class-name: com.mysql.cj.jdbc.Driver         # mysql驱动
+    url: jdbc:mysql://192.168.43.200:3306/study?useUnicode=true&characterEncoding=utf-8&useSSL=false&serverTimezone=Asia/Shanghai
     username: root
-    #    password: root
+    password: 12345678
     hikari:
-      connection-timeout: 30000       # 等待连接池分配连接的最大时长（毫秒），超过这个时长还没可用的连接则发生SQLException， 默认:30秒
+      connection-timeout: 60000       # 等待连接池分配连接的最大时长（毫秒），超过这个时长还没可用的连接则发生SQLException， 默认:30秒
       minimum-idle: 5                 # 最小连接数
-      maximum-pool-size: 20           # 最大连接数
+      maximum-pool-size: 100           # 最大连接数
       auto-commit: true               # 自动提交
       idle-timeout: 600000            # 连接超时的最大时长（毫秒），超时则被释放（retired），默认:10分钟
       pool-name: DateSourceHikariCP     # 连接池名字
-      max-lifetime: 1800000           # 连接的生命时长（毫秒），超时而且没被使用则被释放（retired），默认:30分钟 1800000ms
+      max-lifetime: 30000           # 连接的生命时长（毫秒），超时而且没被使用则被释放（retired），默认:30分钟 1800000ms
       connection-test-query: SELECT 1
   servlet:
     multipart:
       max-file-size: 512000     # 文件上传大小限制为500kb
       max-request-size: 512000  # 请求大小限制为500kb
-
+  main:
+    allow-bean-definition-overriding: true
+---
+spring:
+  thymeleaf:
+    prefix: classpath:/templates/
+    mode: HTML
+  mvc:
+    static-path-pattern: /*
 ---
 mybatis:
   mapper-locations: classpath:mapper/*.xml
   type-aliases-package: org.xr.happy.model
   configuration:
     log-impl: org.apache.ibatis.logging.stdout.StdOutImpl
+    local-cache-scope: session
+
 mapper:
   mappers: org.xr.happy.basemapper.MyMapper
   not-empty: false    # 在进行数据库操作的的时候，判断表达式 username != null, 是否追加 username != ''
@@ -39,14 +51,35 @@ pagehelper:
   supportMethodsArguments: true
 ---
 spring:
-  redis: 192.168.43.200
-    host: 6379
+  redis:
+    host: 192.168.43.200
     password: 123456
-
+    port: 6379
+    timeout: 3000
+    lettuce:
+      pool:
+        max-wait: -1ms
+        max-idle: 10
+        min-idle: 0
+        max-active: 100
 ---
 spring:
   rabbitmq:
-    host: 192.168.2.12
+    host: 192.168.43.200
     username: admin
     password: admin
     virtual-host: /
+    publisher-confirm-type: correlated
+    publisher-returns: true
+    template:
+      mandatory: true
+    connection-timeout: 150000
+
+
+---
+com:
+  boy:
+    face: beautiful
+    height: 170
+    name: steven
+    nick-name: kaikai

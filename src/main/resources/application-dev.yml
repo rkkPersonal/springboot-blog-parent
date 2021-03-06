@@ -56,6 +56,12 @@ spring:
     password: 123456
     port: 6379
     timeout: 3000
+    lettuce:
+      pool:
+        max-wait: -1ms
+        max-idle: 10
+        min-idle: 0
+        max-active: 100
 
 ---
 spring:
@@ -69,5 +75,15 @@ spring:
     template:
       mandatory: true
     connection-timeout: 150000
+    listener:
+      direct:
+        acknowledge-mode: manual
 
 
+---
+com:
+  boy:
+    face: beautiful
+    height: 170
+    name: steven
+    nick-name: kaikai
