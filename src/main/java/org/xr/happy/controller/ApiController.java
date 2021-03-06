@@ -45,6 +45,13 @@ public class ApiController {
     public Result checkRoomSum(@RequestBody Room room) {
         int i = new Random().nextInt(1000);
         Room build = Room.builder().sum(i).build();
+        // 模拟业务处理超时时间
+        int simulator = new Random().nextInt(1000 * 5);
+        try {
+            Thread.sleep(simulator);
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
         return Result.success(build);
     }
 
