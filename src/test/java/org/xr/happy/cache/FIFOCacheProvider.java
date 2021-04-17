@@ -4,15 +4,32 @@ import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
+import java.util.LinkedHashMap;
 import java.util.Map;
-import java.util.concurrent.ConcurrentHashMap;
 import java.util.concurrent.ScheduledThreadPoolExecutor;
 import java.util.concurrent.TimeUnit;
 
-public class CacheProvider {
+public class FIFOCacheProvider {
 
-    private static final Map<String, CacheData> container = new ConcurrentHashMap<>();
+    private static Map<String, CacheData> container = null;
     private static final ScheduledThreadPoolExecutor schedule = new ScheduledThreadPoolExecutor(5);
+
+    private static int MAX_CAPACITY_SIZE = 0;
+    private final float LOAD_FACTOR = 0.75f;
+
+    public FIFOCacheProvider(int maxSize) {
+        MAX_CAPACITY_SIZE = maxSize;
+
+        Double capacity = Math.ceil(maxSize / LOAD_FACTOR) + 1;
+
+        container = new LinkedHashMap<String, CacheData>(capacity.intValue(), LOAD_FACTOR, false) {
+            @Override
+            protected boolean removeEldestEntry(Map.Entry<String, CacheData> eldest) {
+                return size() > MAX_CAPACITY_SIZE;
+            }
+        };
+
+    }
 
 
     public synchronized long size() {
@@ -51,9 +68,11 @@ public class CacheProvider {
         }
 
     }
-    @Data
+
+
     @AllArgsConstructor
     @NoArgsConstructor
+    @Data
     protected class CacheData {
 
         private Object data;
@@ -62,5 +81,21 @@ public class CacheProvider {
 
 
     }
+
+    @Override
+    public String toString() {
+
+        StringBuffer stringBuffer = new StringBuffer();
+
+
+        for (Map.Entry<String, CacheData> result : container.entrySet()) {
+            String key = result.getKey();
+            Object value = result.getValue().data;
+            stringBuffer.append(key).append("=").append(value).append("\n");
+        }
+
+        return stringBuffer.toString();
+    }
+
 }
 
