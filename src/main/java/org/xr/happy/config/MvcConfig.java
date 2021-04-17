@@ -1,9 +1,9 @@
-//package org.xr.happy.config;
+//package org.xr.org.xr.happy.config;
 //
 //import org.springframework.context.annotation.Configuration;
 //import org.springframework.web.servlet.config.annotation.InterceptorRegistry;
 //import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
-//import org.xr.happy.interceptor.TokenInterceptor;
+//import org.xr.org.xr.happy.interceptor.TokenInterceptor;
 //
 //import javax.annotation.Resource;
 //

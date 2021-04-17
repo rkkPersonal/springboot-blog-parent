@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
-<mapper namespace="org.xr.happy.mapper.UserMapper">
-  <resultMap id="BaseResultMap" type="org.xr.happy.model.User">
+<mapper namespace="org.xr.org.xr.happy.mapper.UserMapper">
+  <resultMap id="BaseResultMap" type="org.xr.org.xr.happy.model.User">
     <!--
       WARNING - @mbg.generated
     -->

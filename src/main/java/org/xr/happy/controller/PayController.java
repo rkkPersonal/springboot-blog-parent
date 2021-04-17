@@ -4,6 +4,7 @@ package org.xr.happy.controller;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -12,6 +13,7 @@ import org.xr.happy.common.dto.Result;
 import org.xr.happy.common.vo.TransferVo;
 import org.xr.happy.service.PayServiceAbstract;
 
+import javax.annotation.Resource;
 import java.util.Map;
 
 @RestController
@@ -22,6 +24,13 @@ public class PayController {
 
     @Autowired
     private Map<String, PayServiceAbstract> payMap;
+
+    /**
+     * 练习 @Resource 和 @Autowired 的区别
+     */
+    @Resource
+    @Qualifier("alipay")
+    private PayServiceAbstract payServiceAbstract;
 
 
     @PostMapping("/transfer")

@@ -1,5 +1,5 @@
 /*
-package org.xr.happy.interceptor;
+package org.xr.org.xr.happy.interceptor;
 
 import org.springframework.web.servlet.HandlerInterceptor;
 import org.springframework.web.servlet.ModelAndView;
