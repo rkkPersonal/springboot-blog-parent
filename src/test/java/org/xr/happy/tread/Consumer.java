@@ -3,7 +3,7 @@ package org.xr.happy.tread;
 public class   Consumer extends Thread {
 
 
-    Storage storage;
+    org.xr.happy.tread.Storage storage;
 
     public Consumer(Storage storage) {
         this.storage = storage;

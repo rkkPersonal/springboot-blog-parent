@@ -1,6 +1,5 @@
 package org.xr.happy.java.list;
 
-import java.util.ArrayList;
 import java.util.LinkedList;
 
 public class ListOperator {

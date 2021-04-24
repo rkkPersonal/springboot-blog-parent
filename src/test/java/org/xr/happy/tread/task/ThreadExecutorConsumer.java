@@ -9,7 +9,7 @@ public class ThreadExecutorConsumer {
 
     public static void main(String[] args) {
 
-        while (ThreadExecutorDemo.blockingDeque.size() > 0) {
+        while (org.xr.happy.tread.task.ThreadExecutorDemo.blockingDeque.size() > 0) {
 
 
             uploadThread.submit(() -> {

@@ -12,7 +12,7 @@
         <property name="endingDelimiter" value="`"/>
 
         <plugin type="tk.mybatis.mapper.generator.MapperPlugin">
-            <property name="mappers" value="org.xr.happy.basemapper.MyMapper"/>
+            <property name="mappers" value="org.xr.org.xr.happy.basemapper.MyMapper"/>
         </plugin>
 
         <jdbcConnection driverClass="com.mysql.cj.jdbc.Driver"
@@ -21,11 +21,11 @@
                         password="12345678">
         </jdbcConnection>
 
-        <javaModelGenerator targetPackage="org.xr.happy.model" targetProject="src/main/java"/>
+        <javaModelGenerator targetPackage="org.xr.org.xr.happy.model" targetProject="src/main/java"/>
 
         <sqlMapGenerator targetPackage="mapper" targetProject="src/main/resources"/>
 
-        <javaClientGenerator targetPackage="org.xr.happy.mapper" targetProject="src/main/java"
+        <javaClientGenerator targetPackage="org.xr.org.xr.happy.mapper" targetProject="src/main/java"
                              type="XMLMAPPER"/>
 
         <table tableName="user"></table>

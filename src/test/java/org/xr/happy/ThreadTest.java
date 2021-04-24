@@ -5,7 +5,6 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.xr.happy.atomic.StevenUnsafe;
-import org.xr.happy.model.User;
 
 import java.io.*;
 import java.lang.reflect.InvocationTargetException;

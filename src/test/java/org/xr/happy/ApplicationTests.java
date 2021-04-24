@@ -18,19 +18,16 @@ import org.springframework.data.redis.core.RedisTemplate;
 import org.springframework.http.ResponseEntity;
 import org.springframework.test.context.junit4.SpringRunner;
 import org.springframework.web.client.RestTemplate;
-import org.xr.happy.common.utils.ApplicationContextHelper;
 import org.xr.happy.config.RedisLock;
-import org.xr.happy.model.User;
 import org.xr.happy.service.UserService;
 
 import java.io.InputStream;
 import java.util.ArrayList;
-import java.util.Date;
 import java.util.List;
 import java.util.concurrent.*;
 import java.util.concurrent.atomic.AtomicInteger;
 
-@SpringBootTest(classes = Application.class)
+@SpringBootTest(classes = ApplicationTests.class)
 @RunWith(value = SpringRunner.class)
 class ApplicationTests {
 

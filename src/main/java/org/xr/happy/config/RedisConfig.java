@@ -10,6 +10,8 @@ import org.springframework.context.annotation.Configuration;
 import org.springframework.data.redis.connection.Message;
 import org.springframework.data.redis.connection.MessageListener;
 import org.springframework.data.redis.connection.RedisConnectionFactory;
+import org.springframework.data.redis.connection.RedisSentinelConfiguration;
+import org.springframework.data.redis.connection.lettuce.LettuceConnectionFactory;
 import org.springframework.data.redis.core.*;
 import org.springframework.data.redis.listener.ChannelTopic;
 import org.springframework.data.redis.listener.RedisMessageListenerContainer;
@@ -25,6 +27,15 @@ import java.util.Arrays;
 @EnableCaching //开启注解
 public class RedisConfig extends CachingConfigurerSupport {
 
+    // 哨兵配置
+   /* @Bean
+    public RedisConnectionFactory lettuceConnectionFactory() {
+        RedisSentinelConfiguration sentinelConfig = new RedisSentinelConfiguration()
+                .master("mymaster")
+                .sentinel("127.0.0.1", 26379)
+                .sentinel("127.0.0.1", 26380);
+        return new LettuceConnectionFactory(sentinelConfig);
+    }*/
 
     /**
      * redisTemplate 配置

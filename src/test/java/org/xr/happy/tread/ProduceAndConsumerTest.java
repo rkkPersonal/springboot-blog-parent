@@ -5,15 +5,15 @@ public class ProduceAndConsumerTest {
 
     public static void main(String[] args) {
 
-        Storage storage = new Storage();
+        org.xr.happy.tread.Storage storage = new Storage();
 
-        Produce produce1 = new Produce(storage);
-        Produce produce2 = new Produce(storage);
-        Produce produce3 = new Produce(storage);
+        org.xr.happy.tread.Produce produce1 = new org.xr.happy.tread.Produce(storage);
+        org.xr.happy.tread.Produce produce2 = new org.xr.happy.tread.Produce(storage);
+        org.xr.happy.tread.Produce produce3 = new Produce(storage);
 
-        Consumer consumer1 = new Consumer(storage);
-        Consumer consumer2 = new Consumer(storage);
-        Consumer consumer3 = new Consumer(storage);
+        org.xr.happy.tread.Consumer consumer1 = new org.xr.happy.tread.Consumer(storage);
+        org.xr.happy.tread.Consumer consumer2 = new org.xr.happy.tread.Consumer(storage);
+        org.xr.happy.tread.Consumer consumer3 = new Consumer(storage);
 
         produce1.start();
         produce2.start();

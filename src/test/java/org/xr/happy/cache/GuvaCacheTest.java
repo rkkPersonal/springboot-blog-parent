@@ -2,7 +2,6 @@ package org.xr.happy.cache;
 
 import com.google.common.cache.Cache;
 import com.google.common.cache.CacheBuilder;
-import com.google.common.cache.CacheLoader;
 
 import java.util.concurrent.TimeUnit;
 

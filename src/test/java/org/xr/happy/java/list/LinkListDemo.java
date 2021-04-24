@@ -1,7 +1,5 @@
 package org.xr.happy.java.list;
 
-import java.util.LinkedList;
-
 public class LinkListDemo {
 
 

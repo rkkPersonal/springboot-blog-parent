@@ -1,14 +1,10 @@
 package org.xr.happy.tread.task;
 
-import org.apache.commons.collections4.ListUtils;
-
 import java.util.ArrayList;
 import java.util.LinkedList;
 import java.util.List;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
-import java.util.concurrent.LinkedBlockingDeque;
-import java.util.concurrent.locks.LockSupport;
 
 public class ThreadExecutorDemo {
 

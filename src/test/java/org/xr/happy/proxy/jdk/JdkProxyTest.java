@@ -9,9 +9,9 @@ public class JdkProxyTest {
     public static void main(String[] args) {
 
 
-        Object o = newProxy(JdkInterface.class);
+        Object o = newProxy(org.xr.happy.proxy.jdk.JdkInterface.class);
 
-        JdkInterface jdkInterface = (JdkInterface) o;
+        org.xr.happy.proxy.jdk.JdkInterface jdkInterface = (JdkInterface) o;
 
         jdkInterface.process("宋心茹");
 

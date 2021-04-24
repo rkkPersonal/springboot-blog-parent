@@ -1,7 +1,5 @@
 package org.xr.happy.tread.future;
 
-import org.apache.poi.ss.formula.functions.T;
-
 import java.util.concurrent.Callable;
 import java.util.concurrent.LinkedBlockingQueue;
 import java.util.concurrent.locks.LockSupport;

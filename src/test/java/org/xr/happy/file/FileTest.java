@@ -1,16 +1,12 @@
 package org.xr.happy.file;
 
 
-import com.alibaba.fastjson.JSON;
-import org.junit.jupiter.api.Test;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.xr.happy.Application;
 
 import java.io.File;
 import java.io.FileFilter;
 import java.util.Arrays;
-import java.util.List;
-import java.util.stream.Collectors;
 
 @SpringBootTest(classes = Application.class)
 public class FileTest {

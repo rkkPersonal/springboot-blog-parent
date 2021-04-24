@@ -10,7 +10,7 @@ public class StevenFutureTask {
     public static void main(String[] args)throws Exception {
 
 
-        MyFutureTask futureTask = new MyFutureTask<>(new Callable<String>() {
+        org.xr.happy.tread.future.MyFutureTask futureTask = new MyFutureTask<>(new Callable<String>() {
             @Override
             public String call() throws Exception {
                 return "hfdsafas";

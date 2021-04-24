@@ -1,5 +1,5 @@
-/*
-package org.xr.happy.poi;*/
+package org.xr.happy.poi;/*
+package org.xr.org.xr.happy.poi;*/
 /*
  *  ====================================================================
  *    Licensed to the Apache Software Foundation (ASF) under one or more

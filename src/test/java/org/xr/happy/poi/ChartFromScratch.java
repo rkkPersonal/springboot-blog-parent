@@ -1,4 +1,4 @@
-/*
+package org.xr.happy.poi;/*
  *  ====================================================================
  *    Licensed to the Apache Software Foundation (ASF) under one or more
  *    contributor license agreements.  See the NOTICE file distributed with
@@ -18,7 +18,7 @@
  *//*
 
 
-package org.xr.happy.poi;
+package org.xr.org.xr.happy.poi;
 
 import java.awt.geom.Rectangle2D;
 import java.io.BufferedReader;

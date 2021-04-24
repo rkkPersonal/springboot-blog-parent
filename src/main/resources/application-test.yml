@@ -37,7 +37,7 @@ spring:
 ---
 mybatis:
   mapper-locations: classpath:mapper/*.xml
-  type-aliases-package: org.xr.happy.model
+  type-aliases-package: org.xr.org.xr.happy.model
   configuration:
     log-impl: org.apache.ibatis.logging.stdout.StdOutImpl
     local-cache-scope: session
