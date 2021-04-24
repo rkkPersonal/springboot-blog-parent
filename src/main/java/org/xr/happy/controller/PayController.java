@@ -11,7 +11,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 import org.xr.happy.common.dto.Result;
 import org.xr.happy.common.vo.TransferVo;
-import org.xr.happy.service.PayServiceAbstract;
+import org.xr.happy.service.AbstractPayService;
 
 import javax.annotation.Resource;
 import java.util.Map;
@@ -23,20 +23,20 @@ public class PayController {
     private static final Logger logger = LoggerFactory.getLogger(PayController.class);
 
     @Autowired
-    private Map<String, PayServiceAbstract> payMap;
+    private Map<String, AbstractPayService> payMap;
 
     /**
      * 练习 @Resource 和 @Autowired 的区别
      */
     @Resource
     @Qualifier("alipay")
-    private PayServiceAbstract payServiceAbstract;
+    private AbstractPayService payServiceAbstract;
 
 
     @PostMapping("/transfer")
     public Result transfer(@RequestBody TransferVo transferVo) {
 
-        PayServiceAbstract payServiceAbstract = payMap.get(transferVo.getVerdor());
+        AbstractPayService payServiceAbstract = payMap.get(transferVo.getVerdor());
 
         Result transfer = payServiceAbstract.transfer(transferVo);
 

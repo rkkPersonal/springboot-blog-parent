@@ -8,7 +8,7 @@ import org.xr.happy.common.vo.TransferVo;
  * @author Steven
  */
 @Component
-public abstract class PayServiceAbstract implements PayService{
+public abstract class AbstractPayService implements PayService{
 
     @Override
     public Result transfer(TransferVo transferVo) {
