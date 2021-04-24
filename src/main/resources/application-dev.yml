@@ -2,10 +2,15 @@ spring:
   profiles: dev
   application:
     name: websocket-demo
-#  security:
-#    user:
-#      name: steven
-#      password: 123456
+  #  security:
+  #    user:
+  #      name: steven
+  #      password: 123456
+  liquibase:
+    change-log: classpath:/liquibase/changelog/mychangelog.xml
+    url: jdbc:mysql://192.168.43.200:3306/study?useUnicode=true&characterEncoding=utf-8&useSSL=false&serverTimezone=Asia/Shanghai
+    user: root
+    password: 12345678
 ---
 server:
   port: 8080
@@ -60,10 +65,10 @@ spring:
     password: 123456
     port: 6379
     timeout: 3000
-#    sentinel:
-#      master: mymaster
-#      nodes: 192.168.43.200:6379,192.168.43.200:6380
-#      password: 123456
+    #    sentinel:
+    #      master: mymaster
+    #      nodes: 192.168.43.200:6379,192.168.43.200:6380
+    #      password: 123456
     lettuce:
       pool:
         max-wait: -1ms
