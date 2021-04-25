@@ -5,13 +5,13 @@ import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Service;
 import org.xr.happy.common.dto.Result;
 import org.xr.happy.common.vo.TransferVo;
-import org.xr.happy.service.PayServiceAbstract;
+import org.xr.happy.service.AbstractPayService;
 
 /**
  * @author Steven
  */
 @Service("wechat")
-public class WechatPayServiceImpl extends PayServiceAbstract {
+public class WechatPayServiceImpl extends AbstractPayService {
 
     private static final Logger logger = LoggerFactory.getLogger(WechatPayServiceImpl.class);
 

@@ -83,10 +83,10 @@
         </dependency>
 
         <!--spring security -->
-        <dependency>
+    <!--    <dependency>
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-starter-security</artifactId>
-        </dependency>
+        </dependency>-->
 
         <dependency>
             <groupId>org.mybatis.spring.boot</groupId>
@@ -241,6 +241,14 @@
             <version>4.3.1</version>
         </dependency>
 
+
+        <!--用来解析csv文件-->
+        <!-- https://mvnrepository.com/artifact/com.opencsv/opencsv -->
+        <dependency>
+            <groupId>com.opencsv</groupId>
+            <artifactId>opencsv</artifactId>
+            <version>4.6</version>
+        </dependency>
 
         <!--前端框架引入方式-->
         <dependency>

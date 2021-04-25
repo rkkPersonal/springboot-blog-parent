@@ -2,11 +2,10 @@ package org.xr.happy.service.impl;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-import org.springframework.context.annotation.Primary;
 import org.springframework.stereotype.Service;
 import org.xr.happy.common.dto.Result;
 import org.xr.happy.common.vo.TransferVo;
-import org.xr.happy.service.PayServiceAbstract;
+import org.xr.happy.service.AbstractPayService;
 
 /**
  * @author Steven
@@ -14,7 +13,7 @@ import org.xr.happy.service.PayServiceAbstract;
  */
 @Service("alipay")
 //@Primary
-public class AlipayServiceImpl extends PayServiceAbstract {
+public class AlipayServiceImpl extends AbstractPayService {
 
     private static final Logger logger = LoggerFactory.getLogger(AlipayServiceImpl.class);
 

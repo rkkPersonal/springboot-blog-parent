@@ -40,7 +40,7 @@
             <AppenderRef ref="File"/>
         </Logger>
 -->
-        <Logger name="org.xr.org.xr.happy.controller" additivity="false" level="debug">
+        <Logger name="org.xr.happy.controller" additivity="false" level="debug">
             <AppenderRef ref="STDOUT"/>
         </Logger>
 
