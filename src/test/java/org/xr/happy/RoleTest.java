@@ -1,6 +1,7 @@
 package org.xr.happy;
 
 import io.jsonwebtoken.lang.Assert;
+import org.apache.commons.lang3.StringUtils;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.junit.runner.RunWith;
@@ -42,12 +43,15 @@ public class RoleTest {
     public static void main(String[] args) {
 
 
-        int i =1;
+        String ls = "1111+";
 
-        i<<=10;
+        String regex="([+-]?)[0-9]+(.[0-9]+)?";
 
-        System.out.println(i);
-        System.out.println(Integer.toBinaryString(i));
+        if (ls.matches(regex)){
+            System.out.println("regex = ");
+        }else {
+            System.out.println("----");
+        }
 
     }
 
