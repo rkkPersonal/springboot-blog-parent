@@ -149,11 +149,10 @@ class FastCopyFile {
                 byte[] bytes = new byte[bufferedInputStream.available()];
                 while (true) {
 
-                    if (!(bufferedInputStream.read(bytes) > -1)){
-                        System.out.println(Thread.currentThread().getName()+"读取完成");
+                    if (!(bufferedInputStream.read(bytes) > -1)) {
+                        System.out.println(Thread.currentThread().getName() + "读取完成");
                         break;
                     }
-
 
 
                     writePool.submit(() -> {

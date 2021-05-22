@@ -67,14 +67,14 @@ public class FileZipTest {
 
     */
 /**
-     * @param srcFileName 待压缩文件路径
-     * @param zipFileName zip文件名
-     * @param password    加密密码
-     * @return
-     * @throws Exception
-     * @Title: zipFilesAndEncrypt
-     * @Description: 将指定路径下的文件压缩至指定zip文件，并以指定密码加密 若密码为空，则不进行加密保护
-     *//*
+ * @param srcFileName 待压缩文件路径
+ * @param zipFileName zip文件名
+ * @param password    加密密码
+ * @return
+ * @throws Exception
+ * @Title: zipFilesAndEncrypt
+ * @Description: 将指定路径下的文件压缩至指定zip文件，并以指定密码加密 若密码为空，则不进行加密保护
+ *//*
 
     public static void zipFilesAndEncrypt(String srcFileName, String zipFileName, String password) throws Exception {
         ZipOutputStream outputStream = null;

@@ -14,7 +14,7 @@ public class SemaphoreDemo {
 
 
         for (int i = 0; i < 1000; i++) {
-           new Thread(()->{
+            new Thread(() -> {
                 try {
                     semaphore.acquire();
                     System.out.println("开始执行");

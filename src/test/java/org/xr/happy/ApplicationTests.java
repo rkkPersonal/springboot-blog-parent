@@ -80,7 +80,7 @@ class ApplicationTests {
             int value = response.getStatusCode().value();
             System.out.println("value = " + value);
             InputStream responseBodyStream = response.getBody();
-            List<CsvUser> csvUserList = new CsvToBeanBuilder<CsvUser>(new InputStreamReader(responseBodyStream,"UTF-8"))
+            List<CsvUser> csvUserList = new CsvToBeanBuilder<CsvUser>(new InputStreamReader(responseBodyStream, "UTF-8"))
                     .withType(CsvUser.class)
                     .build().parse();
 

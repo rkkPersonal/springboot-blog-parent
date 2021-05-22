@@ -32,9 +32,10 @@ import org.apache.poi.xslf.usermodel.XSLFSlide;
  * Images
  */
 public final class Tutorial5 {
-    private Tutorial5() {}
+    private Tutorial5() {
+    }
 
-    public static void main(String[] args) throws IOException{
+    public static void main(String[] args) throws IOException {
         try (XMLSlideShow ppt = new XMLSlideShow()) {
             XSLFSlide slide = ppt.createSlide();
 

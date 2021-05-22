@@ -36,17 +36,18 @@ import org.apache.poi.xslf.usermodel.XSLFTextShape;
 /**
  * Demonstrates how you can extract data from a .pptx file
  */
-@SuppressWarnings({"java:S106","java:S4823","java:S1192"})
+@SuppressWarnings({"java:S106", "java:S4823", "java:S1192"})
 public final class DataExtraction {
-    private DataExtraction() {}
+    private DataExtraction() {
+    }
 
     public static void main(String[] args) throws IOException {
 
         PrintStream out = System.out;
 
         if (args.length == 0) {
-           out.println("Input file is required");
-           return;
+            out.println("Input file is required");
+            return;
         }
 
         FileInputStream is = new FileInputStream(args[0]);

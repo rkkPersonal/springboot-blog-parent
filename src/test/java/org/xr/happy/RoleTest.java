@@ -45,11 +45,11 @@ public class RoleTest {
 
         String ls = "1111+";
 
-        String regex="([+-]?)[0-9]+(.[0-9]+)?";
+        String regex = "([+-]?)[0-9]+(.[0-9]+)?";
 
-        if (ls.matches(regex)){
+        if (ls.matches(regex)) {
             System.out.println("regex = ");
-        }else {
+        } else {
             System.out.println("----");
         }
 

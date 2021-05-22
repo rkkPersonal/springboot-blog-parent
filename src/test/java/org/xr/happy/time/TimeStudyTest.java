@@ -22,9 +22,8 @@ public class TimeStudyTest {
         date.setTime(currentTimestamp);
         long time = date.getTime();
         System.out.println(time);
-        System.out.println(date.getYear()+","+date.getMonth()+","+date.getDate()+","+date.getDay()+","+date.getHours()+","+date.getMinutes()+","+date.getSeconds()+","+
-        date.getTimezoneOffset());
-
+        System.out.println(date.getYear() + "," + date.getMonth() + "," + date.getDate() + "," + date.getDay() + "," + date.getHours() + "," + date.getMinutes() + "," + date.getSeconds() + "," +
+                date.getTimezoneOffset());
 
 
         Calendar calendar = Calendar.getInstance();
@@ -42,18 +41,17 @@ public class TimeStudyTest {
         int i1 = calendar.get(Calendar.DAY_OF_YEAR);
         System.out.println(i1);
 
-        calendar.set(Calendar.MONTH,7);
+        calendar.set(Calendar.MONTH, 7);
 
         System.out.println(calendar.getTime());
 
-        calendar.add(Calendar.DAY_OF_MONTH,-2);
+        calendar.add(Calendar.DAY_OF_MONTH, -2);
 
         System.out.println(calendar.getTime());
 
-        calendar.add(Calendar.MINUTE,-33);
+        calendar.add(Calendar.MINUTE, -33);
 
         System.out.println(calendar.getTime());
-
 
 
         Calendar instance = Calendar.getInstance();

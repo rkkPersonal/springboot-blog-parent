@@ -26,19 +26,19 @@ public class KaiCountDownLatch {
     }
 
 
-    public static void main(String[] args)  {
+    public static void main(String[] args) {
 
-        CountDownLatch countDownLatch = new CountDownLatch(5);
+        KaiCountDownLatch countDownLatch = new KaiCountDownLatch(5);
 
         for (int i = 0; i < 5; i++) {
-            new Thread(()->{
+            new Thread(() -> {
 
                 countDownLatch.countDown();
-                System.out.println(Thread.currentThread().getName()+"排队中");
+                System.out.println(Thread.currentThread().getName() + "排队中");
                 try {
                     countDownLatch.await();
                     testPay();
-                } catch (InterruptedException e) {
+                } catch (Exception e) {
                     e.printStackTrace();
                 }
 
@@ -54,7 +54,7 @@ public class KaiCountDownLatch {
         } catch (InterruptedException e) {
             e.printStackTrace();
         }
-        System.out.println(Thread.currentThread().getName()+"执行了");
+        System.out.println(Thread.currentThread().getName() + "执行了");
     }
 
 }

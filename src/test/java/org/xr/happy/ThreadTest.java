@@ -33,7 +33,7 @@ public class ThreadTest {
         ScheduledThreadPoolExecutor scheduledThreadPoolExecutor = new ScheduledThreadPoolExecutor(5);
         scheduledThreadPoolExecutor.schedule(() -> {
             map.remove(key);
-            logger.info(key+" "+"is"+ " "+"expired");
+            logger.info(key + " " + "is" + " " + "expired");
         }, time, TimeUnit.SECONDS);
         scheduledThreadPoolExecutor.shutdown();
         return map;
@@ -49,7 +49,7 @@ public class ThreadTest {
             users.add(new User());
         }*/
 
-         StevenUnsafe stevenUnsafe = new StevenUnsafe();
+        StevenUnsafe stevenUnsafe = new StevenUnsafe();
 
 
         for (int i = 0; i < 6; i++) {
@@ -127,23 +127,23 @@ public class ThreadTest {
         URL url = new URL("file:E:\\");
 
         URLClassLoader urlClassLoader = new URLClassLoader(new URL[]{url});
-        while(true){
+        while (true) {
 
-            if (urlClassLoader==null)break;
+            if (urlClassLoader == null) break;
             Class<?> helloWord = urlClassLoader.loadClass("HelloWord");
 
 
-            System.out.println("HelloWord所使用的类加载器是："+helloWord.getClassLoader());
+            System.out.println("HelloWord所使用的类加载器是：" + helloWord.getClassLoader());
 
             Object o = helloWord.newInstance();
 
             Object test = helloWord.getMethod("test").invoke(o);
-            System.out.println("调用getValue()获得的返回值："+test);
+            System.out.println("调用getValue()获得的返回值：" + test);
             Thread.sleep(2000L);
 
-            o=null;
+            o = null;
 
-            urlClassLoader=null;
+            urlClassLoader = null;
         }
 
         System.gc();

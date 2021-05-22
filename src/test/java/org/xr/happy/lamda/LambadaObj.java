@@ -9,7 +9,7 @@ public class LambadaObj {
 
     public LambadaObj(MyInterface myInterface) {
         //myInterface.methodA();
-       // myInterface.methodB(100);
+        // myInterface.methodB(100);
         int i = myInterface.methodC(10, 20);
         System.out.println(i);
     }

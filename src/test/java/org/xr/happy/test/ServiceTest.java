@@ -26,13 +26,13 @@ public class ServiceTest {
     private UserMapper userMapper;
 
     @Before
-    public void init(){
+    public void init() {
         MockitoAnnotations.initMocks(this);
     }
 
 
     @Test
-    public void test(){
+    public void test() {
 
 
         List<City> list = new ArrayList<>();
@@ -46,11 +46,10 @@ public class ServiceTest {
 
         List<City> steven = cityService.findCityByCountCode("steven");
 
-        Assert.assertEquals(list.size(),2);
+        Assert.assertEquals(list.size(), 2);
 
-        Assert.assertEquals(steven.size(),list.size());
+        Assert.assertEquals(steven.size(), list.size());
     }
-
 
 
 }

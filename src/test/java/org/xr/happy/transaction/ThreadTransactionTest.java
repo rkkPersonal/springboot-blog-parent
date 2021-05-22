@@ -20,9 +20,6 @@ public class ThreadTransactionTest {
     public void testMultiThreadTransaction() {
 
 
-
-
-
     }
 
 }

@@ -20,7 +20,7 @@ import org.xr.happy.service.CityService;
 import java.util.Collections;
 
 /**
- *  junit  4 测试
+ * junit  4 测试
  */
 @RunWith(SpringRunner.class)
 @WebMvcTest(CityController.class)

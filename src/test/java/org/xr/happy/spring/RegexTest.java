@@ -18,17 +18,17 @@ public class RegexTest {
         specifial();
     }
 
-    private static void specifial(){
+    private static void specifial() {
 
-        String regex= "root(?=[0-9]+)";
-        String msg="1234root1231abce";
+        String regex = "root(?=[0-9]+)";
+        String msg = "1234root1231abce";
 
         Pattern compile = Pattern.compile(regex);
         Matcher matcher = compile.matcher(msg);
 
         boolean matches = matcher.matches();
         System.out.println(matches);
-        while (matcher.find()){
+        while (matcher.find()) {
             for (int i = 0; i < matcher.groupCount(); i++) {
 
                 System.out.println(matcher.group(i));

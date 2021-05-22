@@ -30,7 +30,7 @@ public class ThreadExecutorDemo {
 
                     uploadThread.submit(() -> {
 
-                            upload(result);
+                        upload(result);
 
                     });
                 } catch (Exception e) {
@@ -39,10 +39,7 @@ public class ThreadExecutorDemo {
             });
 
 
-
-
         }
-
 
 
     }

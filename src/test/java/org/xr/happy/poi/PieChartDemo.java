@@ -43,11 +43,12 @@ import org.apache.poi.xslf.usermodel.XSLFSlide;
 /**
  * Build a pie chart from a template pptx
  */
-@SuppressWarnings({"java:S106","java:S4823","java:S1192"})
+@SuppressWarnings({"java:S106", "java:S4823", "java:S1192"})
 public final class PieChartDemo {
-    private PieChartDemo() {}
+    private PieChartDemo() {
+    }
 
-    private static void usage(){
+    private static void usage() {
         System.out.println("Usage: PieChartDemo <pie-chart-template.pptx> <pie-chart-data.txt>");
         System.out.println("    pie-chart-template.pptx     template with a pie chart");
         System.out.println("    pie-chart-data.txt          the model to set. First line is chart title, " +
@@ -55,7 +56,7 @@ public final class PieChartDemo {
     }
 
     public static void main(String[] args) throws Exception {
-        if(args.length < 2) {
+        if (args.length < 2) {
             usage();
             return;
         }
@@ -76,41 +77,41 @@ public final class PieChartDemo {
                     }
                 }
 
-	            if(chart == null) {
-	                throw new IllegalStateException("chart not found in the template");
-	            }
+                if (chart == null) {
+                    throw new IllegalStateException("chart not found in the template");
+                }
 
-	            // Series Text
-	            List<XDDFChartData> series = chart.getChartSeries();
-	            XDDFPieChartData pie = (XDDFPieChartData) series.get(0);
+                // Series Text
+                List<XDDFChartData> series = chart.getChartSeries();
+                XDDFPieChartData pie = (XDDFPieChartData) series.get(0);
 
-	            // Category Axis Data
-	            List<String> listCategories = new ArrayList<>(3);
+                // Category Axis Data
+                List<String> listCategories = new ArrayList<>(3);
 
-	            // Values
-	            List<Double> listValues = new ArrayList<>(3);
+                // Values
+                List<Double> listValues = new ArrayList<>(3);
 
-	            // set model
-	            String ln;
-	            while((ln = modelReader.readLine()) != null){
-	                String[] vals = ln.split("\\s+");
-	                listCategories.add(vals[0]);
-	                listValues.add(Double.valueOf(vals[1]));
-	            }
-	            String[] categories = listCategories.toArray(new String[0]);
-	            Double[] values = listValues.toArray(new Double[0]);
+                // set model
+                String ln;
+                while ((ln = modelReader.readLine()) != null) {
+                    String[] vals = ln.split("\\s+");
+                    listCategories.add(vals[0]);
+                    listValues.add(Double.valueOf(vals[1]));
+                }
+                String[] categories = listCategories.toArray(new String[0]);
+                Double[] values = listValues.toArray(new Double[0]);
 
-	            final int numOfPoints = categories.length;
-	            final String categoryDataRange = chart.formatRange(new CellRangeAddress(1, numOfPoints, 0, 0));
-	            final String valuesDataRange = chart.formatRange(new CellRangeAddress(1, numOfPoints, 1, 1));
-	            final XDDFDataSource<?> categoriesData = XDDFDataSourcesFactory.fromArray(categories, categoryDataRange);
-	            final XDDFNumericalDataSource<? extends Number> valuesData = XDDFDataSourcesFactory.fromArray(values, valuesDataRange);
+                final int numOfPoints = categories.length;
+                final String categoryDataRange = chart.formatRange(new CellRangeAddress(1, numOfPoints, 0, 0));
+                final String valuesDataRange = chart.formatRange(new CellRangeAddress(1, numOfPoints, 1, 1));
+                final XDDFDataSource<?> categoriesData = XDDFDataSourcesFactory.fromArray(categories, categoryDataRange);
+                final XDDFNumericalDataSource<? extends Number> valuesData = XDDFDataSourcesFactory.fromArray(values, valuesDataRange);
 
-	            XDDFPieChartData.Series firstSeries = (XDDFPieChartData.Series) pie.getSeries(0);
-	            firstSeries.replaceData(categoriesData, valuesData);
-	            firstSeries.setTitle(chartTitle, chart.setSheetTitle(chartTitle, 0));
-	            firstSeries.setExplosion(25L);
-	            chart.plot(pie);
+                XDDFPieChartData.Series firstSeries = (XDDFPieChartData.Series) pie.getSeries(0);
+                firstSeries.replaceData(categoriesData, valuesData);
+                firstSeries.setTitle(chartTitle, chart.setSheetTitle(chartTitle, 0));
+                firstSeries.setExplosion(25L);
+                chart.plot(pie);
 
                 // save the result
                 try (OutputStream out = new FileOutputStream("pie-chart-demo-output.pptx")) {

@@ -35,7 +35,8 @@ import org.apache.poi.xslf.usermodel.XSLFTextRun;
  * Bullets and numbering
  */
 public final class Tutorial7 {
-    private Tutorial7() {}
+    private Tutorial7() {
+    }
 
     public static void main(String[] args) throws IOException {
         try (XMLSlideShow ppt = new XMLSlideShow()) {

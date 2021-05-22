@@ -1,6 +1,6 @@
 package org.xr.happy.tread;
 
-public class   Consumer extends Thread {
+public class Consumer extends Thread {
 
 
     org.xr.happy.tread.Storage storage;

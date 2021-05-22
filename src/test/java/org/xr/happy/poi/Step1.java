@@ -32,9 +32,10 @@ import org.apache.poi.xslf.usermodel.XSLFTextShape;
 /**
  * Reading a .pptx presentation and printing basic shape properties
  */
-@SuppressWarnings({"java:S106","java:S4823","java:S1192"})
+@SuppressWarnings({"java:S106", "java:S4823", "java:S1192"})
 public final class Step1 {
-    private Step1() {}
+    private Step1() {
+    }
 
     public static void main(String[] args) throws Exception {
      /*   if(args.length == 0)  {
@@ -42,10 +43,10 @@ public final class Step1 {
             return;
         }*/
 
-        String file1= "step2.pptx";
-        String file2="slides.pptx";
-        String file3="text.pptx";
-        String file4="images.pptx";
+        String file1 = "step2.pptx";
+        String file2 = "slides.pptx";
+        String file3 = "text.pptx";
+        String file4 = "images.pptx";
 
         // [width=720,height=540]
 
@@ -65,7 +66,7 @@ public final class Step1 {
                         for (XSLFTextParagraph p : tsh) {
                             System.out.println("Paragraph level: " + p.getIndentLevel());
                             for (XSLFTextRun r : p) {
-                                System.out.println("raw text:"+r.getRawText());
+                                System.out.println("raw text:" + r.getRawText());
                                 System.out.println("  bold: " + r.isBold());
                                 System.out.println("  italic: " + r.isItalic());
                                 System.out.println("  underline: " + r.isUnderlined());

@@ -49,10 +49,10 @@ public class FuncationProgramTest {
     }
 
     public static boolean testPredicate(String name, Predicate<String> predicate) {
-      return   predicate.test(name);
+        return predicate.test(name);
     }
 
-    public static Integer testFuncation(String name, Function<String,Integer> function) {
+    public static Integer testFuncation(String name, Function<String, Integer> function) {
 
         Integer apply = function.apply(name);
 

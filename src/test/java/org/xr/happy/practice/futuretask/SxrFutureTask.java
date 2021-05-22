@@ -36,7 +36,7 @@ public class SxrFutureTask implements Runnable {
     @Override
     public void run() {
         String string = Thread.currentThread().getState().toString();
-        System.out.println("run:"+string);
+        System.out.println("run:" + string);
 
         try {
             result = callable.call();

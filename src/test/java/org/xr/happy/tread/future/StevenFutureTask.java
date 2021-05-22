@@ -7,7 +7,7 @@ public class StevenFutureTask {
 
     public static ExecutorService executorService = Executors.newFixedThreadPool(5);
 
-    public static void main(String[] args)throws Exception {
+    public static void main(String[] args) throws Exception {
 
 
         org.xr.happy.tread.future.MyFutureTask futureTask = new MyFutureTask<>(new Callable<String>() {
