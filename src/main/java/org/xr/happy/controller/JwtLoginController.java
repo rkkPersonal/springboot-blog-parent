@@ -71,7 +71,6 @@ public class JwtLoginController {
     public static ExecutorService executorService = Executors.newFixedThreadPool(CURRENT_COUNTS);
 
 
-
     @Permission(role = "admin")
     @GetMapping("/jwtLogin")
     public Result jwtLogin(@Validator UserVo userVo) {

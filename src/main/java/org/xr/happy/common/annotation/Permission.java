@@ -6,7 +6,7 @@ import java.lang.annotation.*;
 /**
  * @author Steven
  */
-@Target(value = {ElementType.METHOD,ElementType.PARAMETER})
+@Target(value = {ElementType.METHOD, ElementType.PARAMETER})
 @Documented
 @Retention(RetentionPolicy.RUNTIME)
 public @interface Permission {

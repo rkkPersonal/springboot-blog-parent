@@ -26,7 +26,7 @@ public class FileController {
 
 
     @GetMapping("/download")
-    public void download(HttpServletRequest request, HttpServletResponse response) throws Exception{
+    public void download(HttpServletRequest request, HttpServletResponse response) throws Exception {
         logger.info("download file start .....");
         String authorization = request.getHeader("Authorization");
         if (StringUtils.isBlank(authorization) || !authorization.equals("Basic 271857fe-1acb-4b87-aacb-3056e088b4f3")) {
@@ -37,7 +37,7 @@ public class FileController {
         InputStream in = this.getClass().getClassLoader().getResourceAsStream("file/test.csv");
         OutputStream out = null;
         try {
-            response.setContentType( "text/csv; charset=utf-8" );
+            response.setContentType("text/csv; charset=utf-8");
 
             out = response.getOutputStream();
             byte[] buffer = new byte[2048];

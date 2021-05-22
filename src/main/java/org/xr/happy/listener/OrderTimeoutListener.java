@@ -7,6 +7,7 @@ import org.springframework.data.redis.connection.MessageListener;
 
 /**
  * 除了可以用 keyspance 事件，
+ *
  * @author Steven
  */
 public class OrderTimeoutListener implements MessageListener {

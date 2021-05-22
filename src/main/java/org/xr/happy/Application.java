@@ -19,8 +19,8 @@ public class Application {
     }
 
     @Bean
-    public Object testBean(PlatformTransactionManager platformTransactionManager){
-        System.out.println("====默认事务====="+platformTransactionManager.getClass().getName());
+    public Object testBean(PlatformTransactionManager platformTransactionManager) {
+        System.out.println("====默认事务=====" + platformTransactionManager.getClass().getName());
         return new Object();
     }
 

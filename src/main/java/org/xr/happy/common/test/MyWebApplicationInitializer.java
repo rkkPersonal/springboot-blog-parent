@@ -13,6 +13,7 @@ import javax.servlet.ServletRegistration;
 public class MyWebApplicationInitializer implements WebApplicationInitializer {
 
     private static final Logger logger = LoggerFactory.getLogger(MyWebApplicationInitializer.class);
+
     @Override
     public void onStartup(ServletContext servletContext) throws ServletException {
 
@@ -24,5 +25,6 @@ public class MyWebApplicationInitializer implements WebApplicationInitializer {
         DispatcherServlet servlet = new DispatcherServlet(context);
         ServletRegistration.Dynamic registration = servletContext.addServlet("app", servlet);
         registration.setLoadOnStartup(1);
-        registration.addMapping("/app/*");    }
+        registration.addMapping("/app/*");
+    }
 }

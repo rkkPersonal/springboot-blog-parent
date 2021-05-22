@@ -118,16 +118,15 @@ public class ValidatorAspect {
 
 
     /**
-     *
      * @param result
      */
     @AfterReturning(
-            pointcut="org.xr.happy.aspect.ValidatorAspect.doValidator()",
-            returning="result")
+            pointcut = "org.xr.happy.aspect.ValidatorAspect.doValidator()",
+            returning = "result")
     public void doAccessCheck(Object result) {
         // ...
 
-        logger.info("afterReturning advice:{}",result);
+        logger.info("afterReturning advice:{}", result);
     }
 
 

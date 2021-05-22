@@ -57,10 +57,10 @@ public class ScheduledUtil {
         return map;
     }
 
-    public static void main(String[] args) throws Exception{
+    public static void main(String[] args) throws Exception {
 
-        Map<String, Object> put = ScheduledUtil.set("steven", "爱宋心茹", 4,TimeUnit.SECONDS);
-        Map<String, Object> map =ScheduledUtil.set("peck", "爱james", 10,TimeUnit.SECONDS);
+        Map<String, Object> put = ScheduledUtil.set("steven", "爱宋心茹", 4, TimeUnit.SECONDS);
+        Map<String, Object> map = ScheduledUtil.set("peck", "爱james", 10, TimeUnit.SECONDS);
 
         logger.info(put.get("steven").toString());
         logger.info(map.get("peck").toString());

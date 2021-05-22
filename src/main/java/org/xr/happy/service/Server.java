@@ -8,5 +8,5 @@ public interface Server {
     /**
      * 发送消息通用接口
      */
-    public void sendMessage(String param,String textMessage);
+    public void sendMessage(String param, String textMessage);
 }

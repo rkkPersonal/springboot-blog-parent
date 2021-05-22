@@ -56,8 +56,8 @@ public class UserServiceImpl implements UserService {
             }
         }).start();
 */
-        if (insert>0){
-            logger.info("插入成功：userId:"+user.getId());
+        if (insert > 0) {
+            logger.info("插入成功：userId:" + user.getId());
             rabbitTemplate.convertAndSend("xr-blog-love", user.getId());
 
         }

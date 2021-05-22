@@ -25,7 +25,7 @@ public class OrderServiceImpl implements OrderGenerator {
     @Override
     public String generatorOrderId() {
         Long increment = redisTemplate.opsForValue().increment(ORDER_ID, -1);
-        String orderId = generatorPrefix()  + increment;
+        String orderId = generatorPrefix() + increment;
         logger.info("订单号号是:{}", orderId);
         return orderId;
     }

@@ -29,17 +29,17 @@
     </Appenders>
 
     <Loggers>
-       <!-- <Logger name="org.apache.logging.log4j.test1" level="debug" additivity="false">
-            <Filter type="ThreadContextMapFilter">
-                <KeyValuePair key="test" value="123"/>
-            </Filter>
-            <AppenderRef ref="STDOUT"/>
-        </Logger>-->
+        <!-- <Logger name="org.apache.logging.log4j.test1" level="debug" additivity="false">
+             <Filter type="ThreadContextMapFilter">
+                 <KeyValuePair key="test" value="123"/>
+             </Filter>
+             <AppenderRef ref="STDOUT"/>
+         </Logger>-->
 
-      <!--  <Logger name="org.xr.org.xr.happy.controller" level="info" additivity="false">
-            <AppenderRef ref="File"/>
-        </Logger>
--->
+        <!--  <Logger name="org.xr.org.xr.happy.controller" level="info" additivity="false">
+              <AppenderRef ref="File"/>
+          </Logger>
+  -->
         <Logger name="org.xr.happy.controller" additivity="false" level="debug">
             <AppenderRef ref="STDOUT"/>
         </Logger>

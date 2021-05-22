@@ -25,19 +25,19 @@ public class OrderRabbitMqListener {
     private UserMapper userMapper;
 
     @RabbitListener(queues = "xr-blog-love")
-    public void process(String msg ){
+    public void process(String msg) {
 
-        logger.info("我收到消息了:{}",msg);
-        server.sendMessage(msg,"订单支付成功"+new Random().nextInt(10)+"元");
+        logger.info("我收到消息了:{}", msg);
+        server.sendMessage(msg, "订单支付成功" + new Random().nextInt(10) + "元");
 
         // 模拟spring事务
         User user = new User();
         user.setId(Integer.parseInt(msg));
         User user1 = userMapper.selectOne(user);
-        if (user1==null){
-            logger.error("查询失败：userId :"+msg);
-        }else {
-            logger.info("查询成功： userId:"+msg);
+        if (user1 == null) {
+            logger.error("查询失败：userId :" + msg);
+        } else {
+            logger.info("查询成功： userId:" + msg);
         }
     }
 }

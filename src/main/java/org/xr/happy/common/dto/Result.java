@@ -12,7 +12,7 @@ public class Result {
 
     private Object data;
 
-    public Result(){
+    public Result() {
 
     }
 

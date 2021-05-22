@@ -14,7 +14,9 @@ public class RabbitMqConfig {
 
     static final String queueName = "xr-blog-love";
 
-    /**申明队列
+    /**
+     * 申明队列
+     *
      * @return
      */
     @Bean
@@ -23,8 +25,9 @@ public class RabbitMqConfig {
     }
 
 
-
-    /**申明交换机
+    /**
+     * 申明交换机
+     *
      * @return
      */
     @Bean
@@ -32,7 +35,9 @@ public class RabbitMqConfig {
         return new TopicExchange(topicExchangeName);
     }
 
-    /**将交换机与队列绑定
+    /**
+     * 将交换机与队列绑定
+     *
      * @param queue
      * @param exchange
      * @return
