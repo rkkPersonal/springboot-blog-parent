@@ -13,7 +13,7 @@ import springfox.documentation.spring.web.plugins.Docket;
 @Configuration
 public class SwaggerConfig {
 
-//    http://localhost:8088/swagger-ui.html     原路径
+//    http://localhost:8080/swagger-ui/index.html#/     原路径
 //    http://localhost:8088/doc.html     原路径
 
     // 配置swagger2核心配置 docket
@@ -23,7 +23,7 @@ public class SwaggerConfig {
                 .apiInfo(apiInfo())                 // 用于定义api文档汇总信息
                 .select()
                 .apis(RequestHandlerSelectors
-                        .basePackage("com.imooc.controller"))   // 指定controller包
+                        .basePackage("org.xr.happy.controller"))   // 指定controller包
                 .paths(PathSelectors.any())         // 所有controller
                 .build();
     }
