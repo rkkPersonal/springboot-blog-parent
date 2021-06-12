@@ -1,4 +1,4 @@
-package org.xr.happy.controller;
+package org.xr.happy.controller.login;
 
 
 import com.alibaba.fastjson.JSON;
@@ -18,11 +18,11 @@ import org.springframework.data.redis.core.RedisTemplate;
 import org.springframework.expression.Expression;
 import org.springframework.expression.spel.standard.SpelExpressionParser;
 import org.springframework.expression.spel.support.StandardEvaluationContext;
+import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 import org.xr.Boy;
-import org.xr.boy.starter.BoyProperties;
 import org.xr.happy.common.annotation.Permission;
 import org.xr.happy.common.annotation.RedisCache;
 import org.xr.happy.common.annotation.Validator;
@@ -34,7 +34,7 @@ import org.xr.happy.common.utils.JwtUtil;
 import org.xr.happy.common.vo.UserVo;
 import org.xr.happy.mapper.UserMapper;
 import org.xr.happy.model.User;
-import tk.mybatis.mapper.entity.Example;
+import org.xr.happy.service.UserService;
 
 import javax.servlet.http.HttpServletRequest;
 import java.io.File;
@@ -48,9 +48,9 @@ import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
 import java.util.concurrent.TimeUnit;
 import java.util.concurrent.atomic.AtomicInteger;
-import java.util.concurrent.locks.LockSupport;
 
 @RestController
+@RequestMapping("/xr")
 public class JwtLoginController {
 
     private static final Logger logger = LoggerFactory.getLogger(JwtLoginController.class);
@@ -60,6 +60,8 @@ public class JwtLoginController {
     private UserMapper userMapper;
     @Autowired
     private RabbitTemplate rabbitTemplate;
+    @Autowired
+    private UserService userService;
     @Autowired
     private Boy boy;
     @Autowired
@@ -72,10 +74,8 @@ public class JwtLoginController {
 
 
     @Permission(role = "admin")
-    @GetMapping("/jwtLogin")
-    public Result jwtLogin(@Validator UserVo userVo) {
-
-        logger.info("boy is :{}", boy.toString());
+    @GetMapping("/login")
+    public Result login(@Validator UserVo userVo) {
 
         User users = null;
         User user = new User();
@@ -97,9 +97,10 @@ public class JwtLoginController {
             String jwtToken = JwtUtil.createJWT(id.toString(), userVoJson, 5L);
 
             BeanUtils.copyProperties(users, userVo);
-            userVo.setUserUniqueToken(jwtToken);
-            logger.info("jwt token created success !：{}", jwtToken);
 
+            userVo.setUserUniqueToken(jwtToken);
+
+            logger.info("jwt token created success !：{}", jwtToken);
             return Result.success(userVo);
 
         } catch (IOException e) {

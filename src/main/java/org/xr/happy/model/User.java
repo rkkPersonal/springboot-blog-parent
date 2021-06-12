@@ -1,5 +1,7 @@
 package org.xr.happy.model;
 
+import org.xr.happy.common.annotation.NotEmpty;
+
 import java.util.Date;
 import javax.persistence.*;
 
@@ -8,10 +10,11 @@ public class User {
     @GeneratedValue(generator = "JDBC", strategy = GenerationType.IDENTITY)
     private Integer id;
 
+    @NotEmpty(required = true,msg = "用户名不能为空")
     private String username;
-
+    @NotEmpty(required = true,msg = "密码")
     private String password;
-
+    @NotEmpty(required = true,msg = "email不能为空")
     private String email;
 
     @Column(name = "create_time")

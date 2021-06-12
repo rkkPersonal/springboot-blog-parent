@@ -46,7 +46,7 @@ public class ApiController {
 
     }
 
-    @ApiOperation(httpMethod = "POST", value = "room 参数")
+    @ApiOperation( value = "room 参数")
     @PostMapping(value = "/checkSumRoom")
     public Result checkRoomSum(@RequestBody Room room) {
         int i = new Random().nextInt(1000);
@@ -63,7 +63,7 @@ public class ApiController {
 
 
     @GetMapping(value = "/queryOrder")
-    @ApiOperation(value = "查询订单",httpMethod = "post",notes = "主要用来测订单是否存在")
+    @ApiOperation(value = "查询订单",notes = "主要用来测订单是否存在")
     @ApiImplicitParams(value = {
             @ApiImplicitParam(name = "userId",value = "用户ID",defaultValue = "1",required = true,dataType = "Long"),
             @ApiImplicitParam(name = "roomId",value = "房间号码",defaultValue = "99",required = true,dataType = "String")

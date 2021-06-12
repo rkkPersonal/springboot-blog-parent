@@ -1,0 +1,16 @@
+body{
+    background: #bce8f1;
+}
+
+.headers{
+    background: azure;
+    margin-top: 10%;
+    margin-left: 20%;
+    margin-right: 20%;
+}
+
+.user-table{
+    background: lawngreen;
+    margin-left: 20%;
+    margin-right: 20%;
+}

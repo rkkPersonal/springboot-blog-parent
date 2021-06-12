@@ -1,4 +1,3 @@
-/*
 package org.xr.happy.config;
 
 import org.springframework.context.annotation.Bean;
@@ -12,4 +11,4 @@ public class WebSocketConfig {
     public ServerEndpointExporter serverEndpointExporter(){
         return new ServerEndpointExporter();
     }
-}*/
+}

@@ -11,7 +11,9 @@ import org.xr.happy.mapper.UserMapper;
 import org.xr.happy.model.User;
 import org.xr.happy.service.UserService;
 
+import javax.annotation.Resource;
 import java.util.Date;
+import java.util.List;
 
 @Service
 public class UserServiceImpl implements UserService {
@@ -21,8 +23,15 @@ public class UserServiceImpl implements UserService {
 
     @Autowired
     private RabbitTemplate rabbitTemplate;
-    @Autowired
+    @Resource
     private UserMapper userMapper;
+
+    @Override
+    public boolean addUser(User user) {
+        user.setCreateTime(new Date());
+        user.setUpdateTime(new Date());
+        return userMapper.insert(user)>0?true:false;
+    }
 
     @Transactional(propagation = Propagation.REQUIRED)
     @Override
@@ -73,8 +82,14 @@ public class UserServiceImpl implements UserService {
         return null;
     }
 
+    @Override
+    public List<User> queryUser(Long userId, String keywords) {
+        List<User> users = userMapper.selectAll();
+        return users;
+    }
+
     @Transactional(propagation = Propagation.REQUIRED)
-    private User findUserByUserId(Integer userId) {
+    protected User findUserByUserId(Integer userId) {
         User user = new User();
         user.setId(userId);
         User user1 = userMapper.selectOne(user);
