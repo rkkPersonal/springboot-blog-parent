@@ -345,7 +345,7 @@
                 <configuration>
                     <propertyFileWillOverride>true</propertyFileWillOverride>
                     <propertyFile>target/classes/liquibase.properties</propertyFile>
-                    <changeLogFile>specify your changelog file</changeLogFile>
+          <!--          <changeLogFile>specify your changelog file</changeLogFile>
                     <driver>specify the name of the driver class to use to connect to the target database</driver>
                     <url>specify your JDBC connection for the target database</url>
                     <username>specify your username for the target database</username>
@@ -355,7 +355,7 @@
                     <referenceUrl>specify your JDBC connection for the source database</referenceUrl>
                     <referenceUsername>specify your username for the source database</referenceUsername>
                     <referencePassword>specify your password for the source database</referencePassword>
-                    <goal>diff</goal>
+                    <goal>diff</goal>-->
                 </configuration>
             </plugin>
         </plugins>
