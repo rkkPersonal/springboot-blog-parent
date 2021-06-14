@@ -8,6 +8,9 @@ import org.springframework.transaction.PlatformTransactionManager;
 import springfox.documentation.oas.annotations.EnableOpenApi;
 import tk.mybatis.spring.annotation.MapperScan;
 
+/**
+ * @author Steven
+ */
 @SpringBootApplication
 @ComponentScan(basePackages = "org.xr")
 @EnableOpenApi
