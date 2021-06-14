@@ -287,7 +287,6 @@
                     </excludes>
                 </configuration>
             </plugin>
-
             <!--mybatis自动生成代码插件-->
             <plugin>
                 <groupId>org.mybatis.generator</groupId>
