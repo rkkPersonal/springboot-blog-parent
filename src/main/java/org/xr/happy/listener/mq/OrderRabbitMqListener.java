@@ -12,6 +12,7 @@ import org.xr.happy.model.User;
 import org.xr.happy.service.Server;
 
 import java.util.Random;
+import java.util.concurrent.TimeUnit;
 
 @Component
 public class OrderRabbitMqListener extends BaseMq<String> {
@@ -41,5 +42,25 @@ public class OrderRabbitMqListener extends BaseMq<String> {
         } else {
             logger.info("查询成功： userId:" + msg);
         }
+    }
+
+    @Override
+    public String key() {
+        return null;
+    }
+
+    @Override
+    public Long retryTimes() {
+        return null;
+    }
+
+    @Override
+    public TimeUnit timeUnit() {
+        return TimeUnit.MINUTES;
+    }
+
+    @Override
+    public Long time() {
+        return 3L;
     }
 }
