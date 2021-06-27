@@ -24,11 +24,15 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.test.context.junit4.SpringRunner;
 import org.springframework.web.client.RestTemplate;
 import org.xr.happy.common.bean.CsvUser;
+import org.xr.happy.config.RabbitMqConfig;
 import org.xr.happy.config.RedisLock;
+import org.xr.happy.model.User;
 import org.xr.happy.service.UserService;
 
 import java.io.*;
+import java.time.LocalDateTime;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
 import java.util.concurrent.*;
@@ -56,6 +60,25 @@ class ApplicationTests {
     @Test
     public void testTransactionMq() {
         rabbitTemplate.convertAndSend("xr-blog-love", "1");
+    }
+
+
+    @Test
+    public void testDelayQueue() {
+
+        User user = new User();
+        user.setUsername("steven");
+        user.setPassword("12331321");
+        user.setCreateTime(new Date());
+        user.setUpdateTime(new Date());
+        rabbitTemplate.convertAndSend(
+                RabbitMqConfig.DELAY_EXCHANGE,
+                RabbitMqConfig.DELAY_QUEUE, user,
+                message -> {
+                    message.getMessageProperties().setExpiration("60000");
+                    return message;
+                }
+        );
     }
 
     @Test

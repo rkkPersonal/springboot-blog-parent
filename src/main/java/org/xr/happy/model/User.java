@@ -2,10 +2,11 @@ package org.xr.happy.model;
 
 import org.xr.happy.common.annotation.NotEmpty;
 
+import java.io.Serializable;
 import java.util.Date;
 import javax.persistence.*;
 
-public class User {
+public class User implements Serializable {
     @Id
     @GeneratedValue(generator = "JDBC", strategy = GenerationType.IDENTITY)
     private Integer id;

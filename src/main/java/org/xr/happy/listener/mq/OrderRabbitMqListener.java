@@ -1,4 +1,4 @@
-package org.xr.happy.listener;
+package org.xr.happy.listener.mq;
 
 
 import org.slf4j.Logger;
