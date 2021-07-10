@@ -38,9 +38,10 @@ import org.apache.poi.xslf.usermodel.XSLFTextRun;
  * PPTX Tables
  */
 public final class Tutorial4 {
-    private Tutorial4() {}
+    private Tutorial4() {
+    }
 
-    public static void main(String[] args) throws IOException{
+    public static void main(String[] args) throws IOException {
         try (XMLSlideShow ppt = new XMLSlideShow()) {
             // XSLFSlide#createSlide() with no arguments creates a blank slide
             XSLFSlide slide = ppt.createSlide();

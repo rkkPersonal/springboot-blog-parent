@@ -32,7 +32,8 @@ public class FileStreamTest {
 
                 if (bufferedInputStream != null) {
                     bufferedInputStream.close();
-                } if (bufferedOutputStream != null) {
+                }
+                if (bufferedOutputStream != null) {
                     bufferedOutputStream.close();
                 }
             } catch (IOException e) {

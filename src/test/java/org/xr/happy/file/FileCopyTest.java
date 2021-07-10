@@ -6,14 +6,14 @@ public class FileCopyTest {
 
     public static void main(String[] args) {
 
-        BufferedReader reader =null;
-        BufferedWriter writer=null;
+        BufferedReader reader = null;
+        BufferedWriter writer = null;
         try {
-           reader= new BufferedReader(new FileReader("study.txt"));
-            writer=   new BufferedWriter(new FileWriter("scu.txt"));
+            reader = new BufferedReader(new FileReader("study.txt"));
+            writer = new BufferedWriter(new FileWriter("scu.txt"));
 
-            String msg =null;
-            while ((msg=reader.readLine())!=null ){
+            String msg = null;
+            while ((msg = reader.readLine()) != null) {
                 writer.write(msg);
             }
 
@@ -23,7 +23,7 @@ public class FileCopyTest {
             e.printStackTrace();
         } finally {
 
-            if (reader!=null){
+            if (reader != null) {
                 try {
                     reader.close();
                 } catch (IOException e) {
@@ -31,7 +31,7 @@ public class FileCopyTest {
                 }
             }
 
-            if (writer!=null){
+            if (writer != null) {
                 try {
                     writer.close();
                 } catch (IOException e) {

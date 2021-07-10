@@ -2,7 +2,7 @@ package org.xr.happy.lamda;
 
 public interface MyInterface {
 
-   // void methodA();
+    // void methodA();
     // void methodB(int a);
-    int methodC(int a,int b);
+    int methodC(int a, int b);
 }

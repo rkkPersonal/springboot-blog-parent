@@ -27,15 +27,15 @@ public class CityController {
 
     @GetMapping("/cities")
     public ResponseEntity<?> getAllCities() {
-       // List<City> cities = cityService.getAllCities();
-        logger.info("citity is :{}",0);
+        // List<City> cities = cityService.getAllCities();
+        logger.info("citity is :{}", 0);
         return ResponseEntity.ok(0);
     }
 
 
     @GetMapping("/cities/{id}")
     public ResponseEntity<?> getAllCities(@PathVariable(name = "id") int id) {
-        System.out.println("city id is :"+id);
+        System.out.println("city id is :" + id);
         return ResponseEntity.ok("kkkk");
     }
 

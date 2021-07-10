@@ -55,7 +55,7 @@ public class ServerSocketExecutor {
 
                 } catch (IOException e) {
                     e.printStackTrace();
-                }finally {
+                } finally {
                     try {
                         request.close();
                     } catch (IOException e) {

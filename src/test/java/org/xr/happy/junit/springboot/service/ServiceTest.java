@@ -18,20 +18,20 @@ import java.util.List;
 @RunWith(MockitoJUnitRunner.class)
 public class ServiceTest {
     @InjectMocks
-    private CityService cityService=new CityServiceImpl();
+    private CityService cityService = new CityServiceImpl();
 
     @Mock
     private UserMapper userMapper;
 
     @Test
-    public void testDao (){
+    public void testDao() {
 
         User user = new User();
         user.setUsername("steven");
         List<City> allCities = cityService.getAllCities();
         List<User> users = userMapper.selectAll();
         System.out.println(users);
-        Assert.assertEquals(1,users.size());
+        Assert.assertEquals(1, users.size());
     }
 
 }

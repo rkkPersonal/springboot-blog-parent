@@ -1,7 +1,6 @@
 package org.xr.happy.junit.function;
 
 
-
 import org.junit.Assert;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.function.Executable;

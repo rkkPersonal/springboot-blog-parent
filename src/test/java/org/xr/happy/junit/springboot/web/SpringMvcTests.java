@@ -26,7 +26,7 @@ public class SpringMvcTests {
 
     @Before
     public void init() {
-        this.mockMvc = MockMvcBuilders.standaloneSetup(new CityController(),new DemoController(),new ApiController()).build();
+        this.mockMvc = MockMvcBuilders.standaloneSetup(new CityController(), new DemoController(), new ApiController()).build();
     }
 
     @Test

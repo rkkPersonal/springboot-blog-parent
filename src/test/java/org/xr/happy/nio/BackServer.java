@@ -61,7 +61,7 @@ public class BackServer {
                     }
 
 
-                    if (allocate.position()==0)continue;
+                    if (allocate.position() == 0) continue;
 
 
                     allocate.flip();
@@ -72,16 +72,16 @@ public class BackServer {
 
                     System.out.println(new String(bytes));
 
-                    System.out.println("收到数据，来自："+socketChannel.getRemoteAddress());
+                    System.out.println("收到数据，来自：" + socketChannel.getRemoteAddress());
 
 
-                    String response= "HTTP/1.1 200 0K\r\n"
-                            +"Content-Length: 11\r\n\r\n"+
+                    String response = "HTTP/1.1 200 0K\r\n"
+                            + "Content-Length: 11\r\n\r\n" +
                             "Hello Word";
 
                     ByteBuffer wrap = ByteBuffer.wrap(response.getBytes());
 
-                    while (wrap.hasRemaining()){
+                    while (wrap.hasRemaining()) {
                         socketChannel.write(wrap);
                     }
 

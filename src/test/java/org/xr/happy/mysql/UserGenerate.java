@@ -41,7 +41,7 @@ public class UserGenerate {
                 data += new Random().nextInt(10000) + " ,"; // frozen_money
                 data += new Random().nextInt(10000) + " ,"; // pay_points
                 data += new Random().nextInt(10000) + " ,";// rank_points
-				// 生成一个随机时间 30天内的 -- 数据库用的是int
+                // 生成一个随机时间 30天内的 -- 数据库用的是int
                 //  Unix 时间戳从1970年1月1日（UTC/GMT的午夜）开始所经过的秒数
                 long t = 1000 * 60 * 60 * 24 * new Random().nextInt(30); // 分散到天即可
                 long time = (System.currentTimeMillis() - t) / 1000;

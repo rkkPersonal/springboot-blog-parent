@@ -14,7 +14,7 @@ package org.xr.happy.poi;/*
  *    WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
  *    See the License for the specific language governing permissions and
  *    limitations under the License.
- * ==================================================================== 
+ * ====================================================================
  *//*
 
 
@@ -65,21 +65,21 @@ import com.xuggle.xuggler.io.InputOutputStreamHandler;
 */
 /**
  * Adding multiple videos to a slide
- * 
+ * <p>
  * need the Xuggler 5.4 jars:
- *  &lt;repositories&gt;
- *  &lt;repository&gt;
- *  &lt;id&gt;xuggle repo&lt;/id&gt;
- *  &lt;url&gt;http://xuggle.googlecode.com/svn/trunk/repo/share/java/&lt;/url&gt;
- *  &lt;/repository&gt;
- *  &lt;/repositories&gt;
- *  ...
- *  &lt;dependency&gt;
- *  &lt;groupId&gt;xuggle&lt;/groupId&gt;
- *  &lt;artifactId&gt;xuggle-xuggler&lt;/artifactId&gt;
- *  &lt;version&gt;5.4&lt;/version&gt;
- *  &lt;/dependency&gt;
- * 
+ * &lt;repositories&gt;
+ * &lt;repository&gt;
+ * &lt;id&gt;xuggle repo&lt;/id&gt;
+ * &lt;url&gt;http://xuggle.googlecode.com/svn/trunk/repo/share/java/&lt;/url&gt;
+ * &lt;/repository&gt;
+ * &lt;/repositories&gt;
+ * ...
+ * &lt;dependency&gt;
+ * &lt;groupId&gt;xuggle&lt;/groupId&gt;
+ * &lt;artifactId&gt;xuggle-xuggler&lt;/artifactId&gt;
+ * &lt;version&gt;5.4&lt;/version&gt;
+ * &lt;/dependency&gt;
+ *
  * @see <a href="http://stackoverflow.com/questions/15197300/apache-poi-xslf-adding-movie-to-the-slide">Apache POI XSLF Adding movie to the slide</a>
  * @see <a href="http://apache-poi.1045710.n5.nabble.com/Question-about-embedded-video-in-PPTX-files-tt5718461.html">Question about embedded video in PPTX files</a>
  *//*

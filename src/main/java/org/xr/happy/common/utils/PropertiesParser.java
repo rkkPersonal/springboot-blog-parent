@@ -42,10 +42,10 @@ public class PropertiesParser {
 
         while (enumeration.hasMoreElements()) {
             String string = enumeration.nextElement().toString();
-            if (StringUtils.isNotBlank(string)){
+            if (StringUtils.isNotBlank(string)) {
 
-                if (string.contains("-")){
-                    queueList.add(string.substring(string.indexOf("-")+1, string.length()));
+                if (string.contains("-")) {
+                    queueList.add(string.substring(string.indexOf("-") + 1, string.length()));
 
                 }
             }

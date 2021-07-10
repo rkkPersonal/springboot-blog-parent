@@ -6,7 +6,7 @@ import java.io.FileOutputStream;
 
 public class MyPPTTest {
 
-    public static void main(String[] args) throws Exception{
+    public static void main(String[] args) throws Exception {
 
         XMLSlideShow ppt = new XMLSlideShow();
 
@@ -27,8 +27,6 @@ public class MyPPTTest {
         XSLFTextRun xslfTextRun = textBox.addNewTextParagraph().addNewTextRun();
 
         xslfTextRun.setText("hello ,this is a demo !!!!!");
-
-
 
 
         ppt.write(new FileOutputStream("mytest.pptx"));

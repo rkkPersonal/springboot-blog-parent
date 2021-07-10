@@ -12,25 +12,24 @@ public class Job extends RecursiveTask {
 
     private int end;
 
-    public Job(List<String> urls, int start, int end){
-        this.urls=urls;
-        this.start=start;
-        this.end=end;
+    public Job(List<String> urls, int start, int end) {
+        this.urls = urls;
+        this.start = start;
+        this.end = end;
     }
-
 
 
     @Override
     protected Object compute() {
 
 
-        if (urls.size()<=10){
+        if (urls.size() <= 10) {
 
             for (String url : urls) {
                 Request.doRequest(urls);
             }
-        }else {
-            int  x = (start-end)/2;
+        } else {
+            int x = (start - end) / 2;
 
             Job job = new Job(urls, start, x);
 

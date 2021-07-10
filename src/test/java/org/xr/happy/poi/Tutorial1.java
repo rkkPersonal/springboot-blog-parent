@@ -36,9 +36,10 @@ import org.apache.poi.xslf.usermodel.XSLFTextShape;
  * and fill the placeholder shapes
  */
 public final class Tutorial1 {
-    private Tutorial1() {}
+    private Tutorial1() {
+    }
 
-    public static void main(String[] args) throws IOException{
+    public static void main(String[] args) throws IOException {
         try (XMLSlideShow ppt = new XMLSlideShow()) {
             // XSLFSlide#createSlide() with no arguments creates a blank slide
             /*XSLFSlide blankSlide =*/

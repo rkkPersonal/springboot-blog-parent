@@ -1,5 +1,9 @@
 package org.xr.happy.controller;
 
+import io.swagger.annotations.Api;
+import io.swagger.annotations.ApiImplicitParam;
+import io.swagger.annotations.ApiImplicitParams;
+import io.swagger.annotations.ApiOperation;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -17,6 +21,7 @@ import java.util.Random;
 
 @RestController
 @RequestMapping("/api")
+@Api(tags = "布隆过滤器测试",value = "redis 加 内存")
 public class ApiController {
     private static final Logger logger = LoggerFactory.getLogger(ApiController.class);
     @Autowired
@@ -41,6 +46,7 @@ public class ApiController {
 
     }
 
+    @ApiOperation( value = "room 参数")
     @PostMapping(value = "/checkSumRoom")
     public Result checkRoomSum(@RequestBody Room room) {
         int i = new Random().nextInt(1000);
@@ -56,8 +62,14 @@ public class ApiController {
     }
 
 
-    @PostMapping(value = "/queryOrder")
-    public Result queryOrder(@RequestParam("userId") Long userId) {
+    @GetMapping(value = "/queryOrder")
+    @ApiOperation(value = "查询订单",notes = "主要用来测订单是否存在")
+    @ApiImplicitParams(value = {
+            @ApiImplicitParam(name = "userId",value = "用户ID",defaultValue = "1",required = true,dataType = "Long"),
+            @ApiImplicitParam(name = "roomId",value = "房间号码",defaultValue = "99",required = true,dataType = "String")
+    })
+    public Result queryOrder(@RequestParam(value = "userId",defaultValue = "1") Long userId,
+                             @RequestParam(value = "roomId",defaultValue = "99") String roomId) {
         int i = userId.hashCode();
 
         long index = (long) (i / Math.pow(2, 32));

@@ -56,7 +56,7 @@ public class SpringServiceTest {
 
 
     @Test
-    public  void hello() {
+    public void hello() {
 /*
 
         String js = "[[\"hell0=1\",\"hi=2\"],[\"steven=3\",\"sx=4\"],[\"james=5\",\"peck=6\"]]";

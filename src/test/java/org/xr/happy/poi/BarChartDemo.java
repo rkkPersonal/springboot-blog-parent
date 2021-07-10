@@ -46,11 +46,12 @@ import org.apache.poi.xslf.usermodel.XSLFSlide;
 /**
  * Build a bar chart from a template pptx
  */
-@SuppressWarnings({"java:S106","java:S4823","java:S1192"})
+@SuppressWarnings({"java:S106", "java:S4823", "java:S1192"})
 public final class BarChartDemo {
-    private BarChartDemo() {}
+    private BarChartDemo() {
+    }
 
-    private static void usage(){
+    private static void usage() {
         System.out.println("Usage: BarChartDemo <bar-chart-template.pptx> <bar-chart-data.txt>");
         System.out.println("    bar-chart-template.pptx     template with a bar chart");
         System.out.println("    bar-chart-data.txt          the model to set. First line is chart title, " +
@@ -58,13 +59,13 @@ public final class BarChartDemo {
     }
 
     public static void main(String[] args) throws Exception {
-        if(args.length < 2) {
+        if (args.length < 2) {
             usage();
             return;
         }
 
         try (FileInputStream argIS = new FileInputStream(args[0]);
-            BufferedReader modelReader = Files.newBufferedReader(Paths.get(args[1]), StandardCharsets.UTF_8)) {
+             BufferedReader modelReader = Files.newBufferedReader(Paths.get(args[1]), StandardCharsets.UTF_8)) {
 
             String chartTitle = modelReader.readLine();  // first line is chart title
             String[] series = modelReader.readLine().split(",");
@@ -78,7 +79,7 @@ public final class BarChartDemo {
 
             // set model
             String ln;
-            while((ln = modelReader.readLine()) != null) {
+            while ((ln = modelReader.readLine()) != null) {
                 String[] vals = ln.split(",");
                 listCountries.add(Double.valueOf(vals[0]));
                 listSpeakers.add(Double.valueOf(vals[1]));
@@ -150,14 +151,14 @@ public final class BarChartDemo {
     private static XSLFChart findChart(XSLFSlide slide) {
         // find chart in the slide
         XSLFChart chart = null;
-        for(POIXMLDocumentPart part : slide.getRelations()){
-            if(part instanceof XSLFChart){
+        for (POIXMLDocumentPart part : slide.getRelations()) {
+            if (part instanceof XSLFChart) {
                 chart = (XSLFChart) part;
                 break;
             }
         }
 
-        if(chart == null) {
+        if (chart == null) {
             throw new IllegalStateException("chart not found in the template");
         }
         return chart;

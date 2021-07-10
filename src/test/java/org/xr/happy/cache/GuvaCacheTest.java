@@ -14,24 +14,24 @@ public class GuvaCacheTest {
                 .expireAfterAccess(2, TimeUnit.SECONDS)
                 .removalListener(removalNotification -> {
 
-                    System.out.println("key is removed :"+removalNotification.getKey());
+                    System.out.println("key is removed :" + removalNotification.getKey());
 
                 })
                 .build();
 
 
-        cache.put("steven","666");
+        cache.put("steven", "666");
         Object u = cache.getIfPresent("steven");
-        System.out.println("steven:"+u);
+        System.out.println("steven:" + u);
 
         try {
-            Thread .sleep(3000);
+            Thread.sleep(3000);
         } catch (InterruptedException e) {
             e.printStackTrace();
         }
 
         Object steven = cache.getIfPresent("steven");
 
-        System.out.println("steven:"+steven);
+        System.out.println("steven:" + steven);
     }
 }

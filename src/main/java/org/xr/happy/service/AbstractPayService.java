@@ -8,21 +8,26 @@ import org.xr.happy.common.vo.TransferVo;
  * @author Steven
  */
 @Component
-public abstract class AbstractPayService implements PayService{
+public abstract class AbstractPayService implements PayService {
 
     @Override
     public Result transfer(TransferVo transferVo) {
 
-        this.queryBalance(transferVo);
+        Result result = this.queryBalance(transferVo);
 
-        if (transferVo.getTransferType() == 0) {
-
-            this.recharge(transferVo);
+        if (!result.getCode().equals(0)) {
+            return Result.error(result.getMsg());
         }
 
-        this.withdraw(transferVo);
+        switch (transferVo.getTransferType()) {
+            case 0:
+                this.recharge(transferVo);
+                break;
+            case 1:
+                this.withdraw(transferVo);
+        }
 
-        return null;
+        return Result.ok();
     }
 
     /**

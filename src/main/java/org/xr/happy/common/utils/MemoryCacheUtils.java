@@ -10,7 +10,7 @@ import java.util.concurrent.ConcurrentHashMap;
  */
 public class MemoryCacheUtils {
 
-    private Map<String, CacheLoader> containerMap= new ConcurrentHashMap<>();
+    private Map<String, CacheLoader> containerMap = new ConcurrentHashMap<>();
 
 
 }

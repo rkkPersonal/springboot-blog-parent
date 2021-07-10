@@ -1,4 +1,4 @@
-package org.xr.happy.controller;
+package org.xr.happy.controller.pay;
 
 
 import org.slf4j.Logger;

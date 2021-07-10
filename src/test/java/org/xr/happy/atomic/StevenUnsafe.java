@@ -6,7 +6,7 @@ import java.lang.reflect.Field;
 
 public class StevenUnsafe {
 
-    public volatile  int f =0;
+    public volatile int f = 0;
     private static Unsafe unsafe = null;
     private static long valueOffset = 0;
 
@@ -23,7 +23,7 @@ public class StevenUnsafe {
 
             Field i1 = StevenUnsafe.class.getDeclaredField("f");
 
-            valueOffset  = unsafe.objectFieldOffset(i1);
+            valueOffset = unsafe.objectFieldOffset(i1);
 
         } catch (NoSuchFieldException e) {
             e.printStackTrace();
@@ -32,15 +32,15 @@ public class StevenUnsafe {
         }
     }
 
-    public  void add(){
+    public void add() {
 
-        while (true){
+        while (true) {
 
             int currentValue = unsafe.getIntVolatile(this, valueOffset);
 
             boolean b = unsafe.compareAndSwapInt(this, valueOffset, currentValue, currentValue + 1);
 
-            if (b){
+            if (b) {
                 break;
             }
 
@@ -50,22 +50,22 @@ public class StevenUnsafe {
 
     public static void main(String[] args) throws InterruptedException {
 
-       final StevenUnsafe stevenUnsafe = new StevenUnsafe();
+        final StevenUnsafe stevenUnsafe = new StevenUnsafe();
 
 
         for (int i = 0; i < 6; i++) {
 
 
-                new Thread(new Runnable() {
-                    @Override
-                    public void run() {
-                        for (int j = 0; j < 1000; j++) {
+            new Thread(new Runnable() {
+                @Override
+                public void run() {
+                    for (int j = 0; j < 1000; j++) {
                         stevenUnsafe.add();
 
-                        }
-
                     }
-                }).start();
+
+                }
+            }).start();
         }
 
 

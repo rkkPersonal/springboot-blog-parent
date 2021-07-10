@@ -11,7 +11,7 @@ public class CylyDemo {
 
         for (int i = 0; i < 100; i++) {
 
-            new Thread(()->{
+            new Thread(() -> {
 
                 try {
                     System.out.println("开始了");

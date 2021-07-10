@@ -33,9 +33,10 @@ import org.apache.poi.xslf.usermodel.XSLFTextRun;
  * Hyperlinks
  */
 public final class Tutorial6 {
-    private Tutorial6() {}
+    private Tutorial6() {
+    }
 
-    public static void main(String[] args) throws IOException{
+    public static void main(String[] args) throws IOException {
         try (XMLSlideShow ppt = new XMLSlideShow()) {
             XSLFSlide slide1 = ppt.createSlide();
             XSLFSlide slide2 = ppt.createSlide();

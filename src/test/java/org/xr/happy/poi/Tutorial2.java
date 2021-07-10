@@ -35,9 +35,10 @@ import org.apache.poi.xslf.usermodel.XSLFTextRun;
  * Basic paragraph and text formatting
  */
 public final class Tutorial2 {
-    private Tutorial2() {}
+    private Tutorial2() {
+    }
 
-    public static void main(String[] args) throws IOException{
+    public static void main(String[] args) throws IOException {
         try (XMLSlideShow ppt = new XMLSlideShow()) {
             XSLFSlide slide1 = ppt.createSlide();
             XSLFTextBox shape1 = slide1.createTextBox();

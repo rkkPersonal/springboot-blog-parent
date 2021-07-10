@@ -5,11 +5,11 @@ package org.xr.happy.common.constant;
  */
 public class RedisKey {
 
-    public static final  String TEST_CHANNEL_NAME = "sms_send";
+    public static final String TEST_CHANNEL_NAME = "sms_send";
 
-    public static final  String ORDER_TIMEOUT = "order_timeout";
+    public static final String ORDER_TIMEOUT = "order_timeout";
 
-    public static final  String ORDER_TIMEOUT_CHANNEL_NAME = "__keyspace@0__:order_timeout";
+    public static final String ORDER_TIMEOUT_CHANNEL_NAME = "__keyspace@0__:order_timeout";
 
     public static final String GEO_KEY = "user_geo";
 

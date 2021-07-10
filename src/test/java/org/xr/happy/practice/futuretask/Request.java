@@ -59,13 +59,13 @@ public class Request {
             public void uncaughtException(Thread t, Throwable e) {
                 System.out.println("un");
             }
-        },false);
+        }, false);
 
 
         int start = 1;
         int end = 1;
 
-        Job job = new Job(urls,start,urls.size());
+        Job job = new Job(urls, start, urls.size());
 
         ForkJoinTask submit = forkJoinPool.submit(job);
 

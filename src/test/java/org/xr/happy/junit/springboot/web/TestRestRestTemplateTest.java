@@ -26,7 +26,7 @@ public class TestRestRestTemplateTest {
     @Test
     public void getAllCitiesTest() {
         String response = restTemplate.getForObject("/cities", String.class);
-        System.out.println("======================"+response);
+        System.out.println("======================" + response);
         Assertions.assertThat(response).contains("A");
     }
 }

@@ -23,7 +23,7 @@ public class ForkJoinDemo {
 
     public static void main(String[] args) {
 
-        Job job = new Job(10,list);
+        Job job = new Job(10, list);
         ForkJoinTask submit = forkJoinPool.submit(job);
 
         try {
@@ -47,7 +47,7 @@ class Job extends RecursiveTask {
 
     private List<Integer> urls;
 
-    public Job(int  start,int end,List<Integer> urls) {
+    public Job(int start, int end, List<Integer> urls) {
         this.start = start;
         this.end = end;
 
@@ -69,13 +69,11 @@ class Job extends RecursiveTask {
 
             for (int i = 0; i < group.intValue(); i++) {
 
-                end=start+group;
-                Job job = new Job(start,end, urls);
+                end = start + group;
+                Job job = new Job(start, end, urls);
                 job.fork();
 
             }
-
-
 
 
         } else {

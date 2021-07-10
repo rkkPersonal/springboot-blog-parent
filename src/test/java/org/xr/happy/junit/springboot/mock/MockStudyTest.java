@@ -10,7 +10,7 @@ import static org.mockito.Mockito.*;
 public class MockStudyTest {
 
     @Test
-    public void testMock(){
+    public void testMock() {
         // mock creation 创建mock对象
         List mockedList = mock(List.class);
 
@@ -24,7 +24,7 @@ public class MockStudyTest {
     }
 
     @Test
-    public void testMock2(){
+    public void testMock2() {
         //You can mock concrete classes, not only interfaces
         // 你可以mock具体的类型,不仅只是接口
         LinkedList mockedList = mock(LinkedList.class);
@@ -32,7 +32,7 @@ public class MockStudyTest {
         //stubbing
         // 测试桩
         when(mockedList.get(0)).thenReturn("first");
-       // when(mockedList.get(1)).thenThrow(new RuntimeException());
+        // when(mockedList.get(1)).thenThrow(new RuntimeException());
 
         //following prints "first"
         // 输出“first”

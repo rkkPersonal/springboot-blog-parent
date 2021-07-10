@@ -32,9 +32,10 @@ import org.apache.poi.xslf.usermodel.XSLFTextShape;
  * How to set slide title
  */
 public final class Tutorial3 {
-    private Tutorial3() {}
+    private Tutorial3() {
+    }
 
-    public static void main(String[] args) throws IOException{
+    public static void main(String[] args) throws IOException {
         try (XMLSlideShow ppt = new XMLSlideShow()) {
             XSLFSlide slide = ppt.createSlide();
 

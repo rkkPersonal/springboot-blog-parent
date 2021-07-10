@@ -19,11 +19,11 @@ public class OrderGenerate {
         file.createNewFile();
         FileOutputStream fileOutputStream = new FileOutputStream(file);
         // 循环生成随机的N条信息 每天十万单左右
-		//  Unix 时间戳从1970年1月1日（UTC/GMT的午夜）开始所经过的秒数
-		int days = 5000000 / 86400 + 1;
+        //  Unix 时间戳从1970年1月1日（UTC/GMT的午夜）开始所经过的秒数
+        int days = 5000000 / 86400 + 1;
         long t = 86400 * (days); // 分散到天即可
-		long time = System.currentTimeMillis()/ 1000 - t ;
-		
+        long time = System.currentTimeMillis() / 1000 - t;
+
         for (int x = 0; x < num / 86400; x++) {
             String head = "INSERT INTO `ecs_order_info` \n" +
                     "(`order_id`, `order_sn`, `user_id`, `order_status`, `shipping_status`, `pay_status`, \n" +
@@ -35,8 +35,8 @@ public class OrderGenerate {
                     "`pay_time`, `shipping_time`, `bonus_id`, `invoice_no`, `discount`) \n" +
                     "VALUES ";
             fileOutputStream.write(head.getBytes());
-            
-			
+
+
             for (long i = 0; i < 86400; i++) {
                 time = time + 1;
                 String data = "";
@@ -44,7 +44,7 @@ public class OrderGenerate {
                     data += ",\n";
                 }
                 data += "(NULL, ";
-                data += "'"+System.currentTimeMillis() + i + x + "' ,"; // order_sn 时间戳加序号
+                data += "'" + System.currentTimeMillis() + i + x + "' ,"; // order_sn 时间戳加序号
                 data += new Random().nextInt(2000000) + " ,"; // user_id
                 data += new Random().nextInt(4) + " ,"; // order_status
                 data += new Random().nextInt(3) + " ,"; // shipping_status

@@ -13,9 +13,9 @@ public class DisableTest {
     Config config;
 
     @BeforeEach
-    void before(){
+    void before() {
 
-        this.config=new Config();
+        this.config = new Config();
     }
 
     @Test
@@ -25,7 +25,7 @@ public class DisableTest {
     }
 
     @Test
-    @EnabledOnOs({ OS.LINUX, OS.MAC })
+    @EnabledOnOs({OS.LINUX, OS.MAC})
     void testLinuxAndMac() {
         assertEquals("/usr/local/test.cfg", config.getConfigFile("test.cfg"));
 

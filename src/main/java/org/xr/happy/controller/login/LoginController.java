@@ -1,4 +1,4 @@
-package org.xr.happy.controller;
+package org.xr.happy.controller.login;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -10,7 +10,6 @@ import org.springframework.web.bind.annotation.RestController;
 import org.xr.happy.common.constant.Token;
 import org.xr.happy.common.utils.RedisOperator;
 import org.xr.happy.common.vo.UserVo;
-import org.xr.happy.exception.GlobalException;
 
 import java.util.UUID;
 

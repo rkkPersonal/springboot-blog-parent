@@ -28,9 +28,10 @@ import org.apache.poi.xslf.usermodel.XSLFSlide;
 /**
  * Merge multiple pptx presentations together
  */
-@SuppressWarnings({"java:S106","java:S4823","java:S1192"})
+@SuppressWarnings({"java:S106", "java:S4823", "java:S1192"})
 public final class MergePresentations {
-    private MergePresentations() {}
+    private MergePresentations() {
+    }
 
     public static void main(String[] args) throws Exception {
         try (XMLSlideShow ppt = new XMLSlideShow()) {

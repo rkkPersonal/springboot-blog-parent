@@ -33,7 +33,7 @@ public class AqsTest {
                 kaiCountDownLatch.countDown();
 
 
-                System.out.println(Thread.currentThread().getName()+"开始执行");
+                System.out.println(Thread.currentThread().getName() + "开始执行");
             }).start();
         }
 

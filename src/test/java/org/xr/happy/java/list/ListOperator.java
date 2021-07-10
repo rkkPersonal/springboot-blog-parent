@@ -32,7 +32,7 @@ public class ListOperator {
         System.out.println(s1);
 
 
-        while (strings.size()>0){
+        while (strings.size() > 0) {
 
             boolean pop = strings.offer("af");
             System.out.println(strings);

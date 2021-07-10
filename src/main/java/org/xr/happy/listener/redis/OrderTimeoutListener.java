@@ -1,4 +1,4 @@
-package org.xr.happy.listener;
+package org.xr.happy.listener.redis;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -7,6 +7,7 @@ import org.springframework.data.redis.connection.MessageListener;
 
 /**
  * 除了可以用 keyspance 事件，
+ *
  * @author Steven
  */
 public class OrderTimeoutListener implements MessageListener {

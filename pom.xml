@@ -16,6 +16,8 @@
 
     <properties>
         <java.version>1.8</java.version>
+        <sonar.login>admin</sonar.login>
+        <sonar.password>admin</sonar.password>
     </properties>
 
     <dependencies>
@@ -83,10 +85,10 @@
         </dependency>
 
         <!--spring security -->
-        <dependency>
-            <groupId>org.springframework.boot</groupId>
-            <artifactId>spring-boot-starter-security</artifactId>
-        </dependency>
+        <!--    <dependency>
+                <groupId>org.springframework.boot</groupId>
+                <artifactId>spring-boot-starter-security</artifactId>
+            </dependency>-->
 
         <dependency>
             <groupId>org.mybatis.spring.boot</groupId>
@@ -242,17 +244,31 @@
         </dependency>
 
 
+        <!--用来解析csv文件-->
+        <!-- https://mvnrepository.com/artifact/com.opencsv/opencsv -->
+        <dependency>
+            <groupId>com.opencsv</groupId>
+            <artifactId>opencsv</artifactId>
+            <version>4.6</version>
+        </dependency>
+
+        <dependency>
+            <groupId>org.dom4j</groupId>
+            <artifactId>dom4j</artifactId>
+            <version>2.1.3</version>
+        </dependency>
+
         <!--前端框架引入方式-->
-        <dependency>
-            <groupId>org.webjars</groupId>
-            <artifactId>bootstrap</artifactId>
-            <version>4.0.0</version>
-        </dependency>
-        <dependency>
-            <groupId>org.webjars</groupId>
-            <artifactId>jquery</artifactId>
-            <version>3.5.0</version>
-        </dependency>
+        <!--     <dependency>
+                 <groupId>org.webjars</groupId>
+                 <artifactId>bootstrap</artifactId>
+                 <version>4.0.0</version>
+             </dependency>
+             <dependency>
+                 <groupId>org.webjars</groupId>
+                 <artifactId>jquery</artifactId>
+                 <version>3.5.0</version>
+             </dependency>-->
     </dependencies>
 
     <build>
@@ -331,20 +347,45 @@
                 <configuration>
                     <propertyFileWillOverride>true</propertyFileWillOverride>
                     <propertyFile>target/classes/liquibase.properties</propertyFile>
-                    <changeLogFile>specify your changelog file</changeLogFile>
-                    <driver>specify the name of the driver class to use to connect to the target database</driver>
-                    <url>specify your JDBC connection for the target database</url>
-                    <username>specify your username for the target database</username>
-                    <password>specify your password for the target database</password>
-                    <referenceDriver>specify the name of the driver class to use to connect to the reference database
-                    </referenceDriver>
-                    <referenceUrl>specify your JDBC connection for the source database</referenceUrl>
-                    <referenceUsername>specify your username for the source database</referenceUsername>
-                    <referencePassword>specify your password for the source database</referencePassword>
-                    <goal>diff</goal>
+                    <!--          <changeLogFile>specify your changelog file</changeLogFile>
+                              <driver>specify the name of the driver class to use to connect to the target database</driver>
+                              <url>specify your JDBC connection for the target database</url>
+                              <username>specify your username for the target database</username>
+                              <password>specify your password for the target database</password>
+                              <referenceDriver>specify the name of the driver class to use to connect to the reference database
+                              </referenceDriver>
+                              <referenceUrl>specify your JDBC connection for the source database</referenceUrl>
+                              <referenceUsername>specify your username for the source database</referenceUsername>
+                              <referencePassword>specify your password for the source database</referencePassword>
+                              <goal>diff</goal>-->
                 </configuration>
             </plugin>
+            <plugin>
+                <groupId>org.sonarsource.scanner.maven</groupId>
+                <artifactId>sonar-maven-plugin</artifactId>
+                <version>3.6.0.1398</version>
+            </plugin>
         </plugins>
+
+        <resources>
+            <resource>
+                <directory>src/main/resources</directory>
+                <includes>
+                    <include>**/*.properties</include>
+                    <include>**/*.xml</include>
+                    <!--加载模板文件-->
+                    <include>**/*.html</include>
+                    <include>**/*.js</include>
+                    <include>**/*.css</include>
+                    <include>**/*.png</include>
+                    <include>**/*.gif</include>
+                    <include>**/*.svg</include>
+                    <!--加载静态文件-->
+                    <include>/static/</include>
+                </includes>
+                <filtering>false</filtering>
+            </resource>
+        </resources>
 
     </build>
     <profiles>
@@ -399,5 +440,15 @@
                 </resources>
             </build>
         </profile>
+        <profile>
+            <id>sonar</id>
+            <activation>
+                <activeByDefault>true</activeByDefault>
+            </activation>
+            <properties>
+                <sonar.host.url>http://192.168.43.220:9000/sonarQube</sonar.host.url>
+            </properties>
+        </profile>
     </profiles>
+
 </project>

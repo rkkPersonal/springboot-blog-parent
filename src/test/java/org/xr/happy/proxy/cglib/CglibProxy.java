@@ -10,8 +10,8 @@ import java.util.Date;
 public class CglibProxy {
 
 
-    public String process(){
-        System.out.println("steven"+new Date());
+    public String process() {
+        System.out.println("steven" + new Date());
         return "hello";
     }
 
@@ -28,14 +28,14 @@ public class CglibProxy {
 
                 Object o1 = methodProxy.invokeSuper(o, objects);
 
-                System.out.println("cglib method invoke result:"+o1);
+                System.out.println("cglib method invoke result:" + o1);
                 System.out.println("after method ");
 
                 return o1;
             }
         });
 
-        CglibProxy proxy = (CglibProxy)enhancer.create();
+        CglibProxy proxy = (CglibProxy) enhancer.create();
 
         proxy.process();
 

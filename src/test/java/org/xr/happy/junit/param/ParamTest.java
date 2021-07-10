@@ -15,7 +15,7 @@ import static org.junit.Assert.assertEquals;
 public class ParamTest {
 
     @ParameterizedTest
-    @ValueSource(ints = { 0, 1, 5, 100 })
+    @ValueSource(ints = {0, 1, 5, 100})
     void testAbs(int x) {
         assertEquals(x, Math.abs(x));
         System.out.println(x);
@@ -23,13 +23,13 @@ public class ParamTest {
 
 
     @ParameterizedTest
-    @ValueSource(ints = { -1, -5, -100 })
+    @ValueSource(ints = {-1, -5, -100})
     void testAbsNegative(int x) {
         assertEquals(-x, Math.abs(x));
     }
 
     @ParameterizedTest
-    @CsvSource({ "abc, Abc", "APPLE, Apple", "gooD, Good" })
+    @CsvSource({"abc, Abc", "APPLE, Apple", "gooD, Good"})
     void testCapitalize(String input, String result) {
         System.out.println(result);
         assertEquals(result, StringUtils.capitalize(input));
@@ -37,10 +37,10 @@ public class ParamTest {
 
 
     @ParameterizedTest
-    @MethodSource(value ={"testCapitalize"} )
+    @MethodSource(value = {"testCapitalize"})
     void testCapitaliz(String input, String result) {
-        System.out.println("-----:"+input);
-        System.out.println("*****:"+result);
+        System.out.println("-----:" + input);
+        System.out.println("*****:" + result);
         assertEquals(result, StringUtils.capitalize(input));
     }
 
