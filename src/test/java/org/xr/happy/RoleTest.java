@@ -13,6 +13,8 @@ import org.mockito.junit.MockitoJUnitRunner;
 import org.xr.happy.mapper.UserMapper;
 import org.xr.happy.model.User;
 
+import java.util.Scanner;
+
 import static org.mockito.ArgumentMatchers.any;
 
 @RunWith(MockitoJUnitRunner.class)
@@ -43,7 +45,23 @@ public class RoleTest {
     public static void main(String[] args) {
 
 
-        String ls = "1111+";
+        Scanner scanner = new Scanner(System.in);
+        String next = scanner.next();
+        char c = next.charAt(0);
+
+        switch (c){
+            case 'a':
+                System.out.println("A");break;
+            case 'b':
+                System.out.println("B"); break;
+            case 'c':
+                System.out.println("C"); break;
+            default:
+                System.out.println("other");
+                break;
+        }
+
+   /*     String ls = "1111+";
 
         String regex = "([+-]?)[0-9]+(.[0-9]+)?";
 
@@ -52,7 +70,7 @@ public class RoleTest {
         } else {
             System.out.println("----");
         }
-
+*/
     }
 
     /**
