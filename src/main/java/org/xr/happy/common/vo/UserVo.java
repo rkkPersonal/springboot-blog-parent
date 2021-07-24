@@ -1,11 +1,14 @@
 package org.xr.happy.common.vo;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonView;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 import org.xr.happy.common.annotation.NotEmpty;
+import org.xr.happy.common.annotation.Valid;
+import org.xr.happy.common.view.ResultJsonView;
 
 import java.lang.reflect.Constructor;
 import java.lang.reflect.Field;
@@ -20,14 +23,18 @@ public class UserVo {
     private Long userId;
 
     @NotEmpty(msg = "username 不能为空", required = true)
+    @JsonView(value = ResultJsonView.UserSimple.class)
     private String username;
 
-    @JsonIgnore
+    @JsonView(value = ResultJsonView.UserDetail.class)
     private String password;
 
     private String email;
 
     private String userUniqueToken;
+
+    @Valid
+    private OrderVo orderVo;
 
 
     public Long getUserId() {
@@ -78,6 +85,7 @@ public class UserVo {
                 ", password='" + password + '\'' +
                 ", email='" + email + '\'' +
                 ", userUniqueToken='" + userUniqueToken + '\'' +
+                ", orderVo=" + orderVo +
                 '}';
     }
 

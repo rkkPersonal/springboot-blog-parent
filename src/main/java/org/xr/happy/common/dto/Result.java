@@ -1,15 +1,20 @@
 package org.xr.happy.common.dto;
 
 
+import com.fasterxml.jackson.annotation.JsonView;
 import lombok.Data;
+import org.xr.happy.common.view.ResultJsonView;
 
 @Data
-public class Result {
+public class Result<T> {
 
+    @JsonView(ResultJsonView.all.class)
     private Integer code;
 
+    @JsonView(ResultJsonView.all.class)
     private String msg;
 
+    @JsonView(ResultJsonView.all.class)
     private Object data;
 
     public Result() {

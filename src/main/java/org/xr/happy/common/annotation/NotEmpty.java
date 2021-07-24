@@ -6,7 +6,7 @@ import java.lang.annotation.*;
 /**
  * @author Steven
  */
-@Target(value = ElementType.FIELD)
+@Target(value = {ElementType.FIELD,ElementType.PARAMETER})
 @Documented
 @Retention(RetentionPolicy.RUNTIME)
 public @interface NotEmpty {

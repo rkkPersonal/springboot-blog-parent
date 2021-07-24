@@ -33,8 +33,8 @@ public class DemoController {
 
         ArrayList<Object> objects = new ArrayList<>();
 
-        Collections.addAll(objects, new UserVo(123L, "steven", "123456", "steven.renqq.com", "444"),
-                new UserVo(124L, "宋心茹", "123456", "sxr.renqq.com", "5565"));
+    /*    Collections.addAll(objects, new UserVo(123L, "steven", "123456", "steven.renqq.com", "444"),
+                new UserVo(124L, "宋心茹", "123456", "sxr.renqq.com", "5565"));*/
 
         modelMap.addAttribute("userList", objects);
 
