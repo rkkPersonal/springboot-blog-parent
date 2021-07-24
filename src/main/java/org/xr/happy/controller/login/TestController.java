@@ -30,7 +30,7 @@ public class TestController {
         return Result.success(vo);
     }
 
-    @JsonView(value = ResultJsonView.all.class)
+    @JsonView(value = ResultJsonView.UserDetail.class)
     @RequestMapping(value = "/jsonview",method = RequestMethod.POST)
     public Result jsonView(@RequestBody @Validator UserVo userVo){
 
