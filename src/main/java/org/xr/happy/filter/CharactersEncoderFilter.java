@@ -1,4 +1,3 @@
-/*
 package org.xr.org.xr.happy.filter;
 
 import org.slf4j.Logger;
@@ -11,10 +10,9 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 
-*/
 /**
  * @author Steven
- *//*
+ */
 
 @WebFilter(filterName = "charactersEncoderFilter")
 @Component
@@ -44,4 +42,3 @@ public class CharactersEncoderFilter implements Filter {
 
     }
 }
-*/
