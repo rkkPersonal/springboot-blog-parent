@@ -11,6 +11,6 @@ import java.lang.annotation.*;
 @Retention(RetentionPolicy.RUNTIME)
 public @interface Permission {
 
-    String role() default "";
+    String [] permissions() default {};
 
 }

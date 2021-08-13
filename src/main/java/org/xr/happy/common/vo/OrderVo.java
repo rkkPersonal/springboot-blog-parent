@@ -15,7 +15,6 @@ import java.util.regex.Pattern;
 @Builder
 public class OrderVo {
 
-    @NotEmpty(required = true,msg = "orderId 不能为空")
     private String orderId;
 
     private String shopping;

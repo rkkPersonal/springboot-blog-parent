@@ -1,5 +1,6 @@
 package org.xr.happy.service.impl;
 
+import com.alibaba.fastjson.JSON;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.amqp.rabbit.core.RabbitTemplate;
@@ -7,11 +8,13 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Propagation;
 import org.springframework.transaction.annotation.Transactional;
+import org.xr.happy.common.constant.PermissionConstant;
 import org.xr.happy.mapper.UserMapper;
 import org.xr.happy.model.User;
 import org.xr.happy.service.UserService;
 
 import javax.annotation.Resource;
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
@@ -86,6 +89,15 @@ public class UserServiceImpl implements UserService {
     public List<User> queryUser(Long userId, String keywords) {
         List<User> users = userMapper.selectAll();
         return users;
+    }
+
+    @Override
+    public List<String> getUserAuthorized(User user) {
+        logger.info("查询用户权限:{}", JSON.toJSONString(user));
+        List<String> authorizedList=new ArrayList<>();
+        //authorizedList.add("add");
+        authorizedList.add(PermissionConstant.SEARCH);
+        return authorizedList;
     }
 
     @Transactional(propagation = Propagation.REQUIRED)

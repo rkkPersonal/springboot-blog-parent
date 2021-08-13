@@ -6,7 +6,9 @@ import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.ModelAndView;
+import org.xr.happy.common.annotation.Permission;
 import org.xr.happy.common.annotation.Validator;
+import org.xr.happy.common.constant.PermissionConstant;
 import org.xr.happy.common.dto.Result;
 import org.xr.happy.model.User;
 import org.xr.happy.service.UserService;
@@ -30,13 +32,14 @@ public class UserController {
     private UserService userService;
 
 
+    @Permission(permissions = {PermissionConstant.ADD, PermissionConstant.EDIT})
     @PostMapping(path = "/add")
     @ResponseBody
     public Result addUser(@Validator User user, HttpServletResponse response) {
 
         logger.info("userInfo :{}", JSON.toJSONString(user));
         boolean b = userService.addUser(user);
-        if (!b){
+        if (!b) {
             return Result.error("添加用户失败");
         }
         return Result.ok();
@@ -54,7 +57,7 @@ public class UserController {
         return Result.ok();
     }
 
-    @RequestMapping(path = "/query/{userId}",method = RequestMethod.GET)
+    @RequestMapping(path = "/query/{userId}", method = RequestMethod.GET)
     public ModelAndView queryUser(@PathVariable(name = "userId") Long userId, String keywords) {
         List<User> userList = userService.queryUser(userId, keywords);
 

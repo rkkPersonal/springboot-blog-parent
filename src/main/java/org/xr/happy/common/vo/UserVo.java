@@ -19,10 +19,8 @@ import java.lang.reflect.Field;
 @Builder
 public class UserVo {
 
-    @NotEmpty(msg = "userId 不能为空", required = true)
     private Long userId;
 
-    @NotEmpty(msg = "username 不能为空", required = true)
     @JsonView(value = ResultJsonView.UserSimple.class)
     private String username;
 
@@ -33,7 +31,6 @@ public class UserVo {
 
     private String userUniqueToken;
 
-    @Valid
     private OrderVo orderVo;
 
 

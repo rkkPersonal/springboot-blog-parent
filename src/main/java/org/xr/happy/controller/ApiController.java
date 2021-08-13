@@ -16,6 +16,7 @@ import org.xr.happy.mapper.UserMapper;
 import org.xr.happy.model.User;
 
 import javax.annotation.PostConstruct;
+import javax.validation.constraints.NotNull;
 import java.util.List;
 import java.util.Random;
 

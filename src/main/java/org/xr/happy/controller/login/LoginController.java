@@ -8,6 +8,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RestController;
 import org.xr.happy.common.constant.Token;
+import org.xr.happy.common.dto.Result;
 import org.xr.happy.common.utils.RedisOperator;
 import org.xr.happy.common.vo.UserVo;
 
@@ -22,7 +23,7 @@ public class LoginController {
     private RedisOperator redisOperator;
 
     @GetMapping("/signIn")
-    public ResponseEntity signIn(UserVo users) {
+    public Result signIn(UserVo users) {
 
 
         // 伪代码
@@ -34,7 +35,7 @@ public class LoginController {
 
         // 将用户信息写道 cookie
         logger.info("user sign in is successfully!!");
-        return new ResponseEntity(userVo, HttpStatus.OK);
+        return Result.success(userVo);
 
     }
 

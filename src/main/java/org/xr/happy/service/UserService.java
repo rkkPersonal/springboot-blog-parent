@@ -11,4 +11,6 @@ public interface UserService {
     public User createUser(final int c);
 
     List<User> queryUser(Long userId,String keywords);
+
+    List<String> getUserAuthorized(User user);
 }

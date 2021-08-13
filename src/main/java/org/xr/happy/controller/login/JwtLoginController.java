@@ -18,12 +18,10 @@ import org.springframework.data.redis.core.RedisTemplate;
 import org.springframework.expression.Expression;
 import org.springframework.expression.spel.standard.SpelExpressionParser;
 import org.springframework.expression.spel.support.StandardEvaluationContext;
-import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 import org.xr.Boy;
-import org.xr.happy.common.annotation.Permission;
 import org.xr.happy.common.annotation.RedisCache;
 import org.xr.happy.common.annotation.Validator;
 import org.xr.happy.common.constant.RedisKey;
@@ -72,8 +70,6 @@ public class JwtLoginController {
 
     public static ExecutorService executorService = Executors.newFixedThreadPool(CURRENT_COUNTS);
 
-
-    @Permission(role = "admin")
     @GetMapping("/login")
     public Result login(@Validator UserVo userVo) {
 

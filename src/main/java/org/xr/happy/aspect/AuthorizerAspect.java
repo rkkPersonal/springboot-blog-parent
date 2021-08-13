@@ -62,9 +62,6 @@ public class AuthorizerAspect {
 
                 Permission annotation = method.getAnnotation(Permission.class);
 
-                String role = annotation.role();
-
-                logger.info("role:{}", role);
             }
 
         }
