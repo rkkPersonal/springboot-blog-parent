@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<h2>
+    I Love You
+</h2>
+<table>
+    <tr>
+        <td>用户名</td>
+        <!--使用th,html标签内要导入xmlns:th="http://www.thymeleaf.org"-->
+        <td th:text="${username}"></td>
+    </tr>
+    <tr>
+        <td>年龄</td>
+        <td th:text="${age}"></td>
+    </tr>
+</table>
+
+<div>
+    这是一张图片:
+</div>
+<div>
+    <img src="\dev\JavaStudy\springboot-blog-parent\src\main\resources\static\image\love.jpg"/>
+</div>
+</body>
+</html>
