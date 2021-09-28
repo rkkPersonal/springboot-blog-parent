@@ -28,7 +28,10 @@ import org.xr.happy.config.RabbitMqConfig;
 import org.xr.happy.config.RedisLock;
 import org.xr.happy.model.User;
 import org.xr.happy.service.UserService;
+import org.xr.happy.service.mail.MailService;
 
+import javax.annotation.Resource;
+import javax.mail.MessagingException;
 import java.io.*;
 import java.time.LocalDateTime;
 import java.util.ArrayList;
@@ -50,12 +53,19 @@ class ApplicationTests {
     private UserService userService;
     @Autowired
     private RestTemplate restTemplate;
+    @Resource
+    private MailService mailService;
 
 
     private static int CURRENT_COUNTS = 200;
     private static AtomicInteger atomicInteger = new AtomicInteger();
 
     public static ExecutorService executorService = Executors.newFixedThreadPool(CURRENT_COUNTS);
+
+    @Test
+    public void testSendEmail() throws MessagingException {
+        mailService.postTemplateEmail();
+    }
 
     @Test
     public void testTransactionMq() {

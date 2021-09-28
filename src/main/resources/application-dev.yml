@@ -45,7 +45,7 @@ spring:
   mvc:
     static-path-pattern: /*
   resources:
-    static-locations:  classpath:/static/
+    static-locations:  classpath:/static/,classpath:/templates/
 ---
 mybatis:
   mapper-locations: classpath:mapper/*.xml
@@ -103,3 +103,26 @@ com:
     height: 170
     name: steven
     nick-name: kaikai
+---
+#邮件设置
+#spring.mail.host=smtp.exmail.qq.com
+#暂时改为个人邮箱smtp服务器进行测试
+spring:
+  mail:
+    #坑爹的地方：host 通道个人邮箱和企业邮箱通道不同。163的个人邮箱：smtp.163.com ，企业邮箱：smtp.qiye.163.com
+    # 腾讯的，个人smtp.qq.com， 企业的：smtp.exmail.qq.com
+    host: smtp.163.com
+    username: 17635841699@163.com
+    # 口令是QQ邮箱开通的smtp服务后得到的客户端授权码,不是你的邮箱登录密码
+    password: GUAUFEAEBTYURCNK
+    default-encoding: UTF-8
+    properties:
+      from:
+      mail:
+        smtp:
+          auth: true
+          socketFactory:
+            class: javax.net.ssl.SSLSocketFactory
+            port: 465
+        # 开启debug，方便查看邮件发送日志
+        debug: true
