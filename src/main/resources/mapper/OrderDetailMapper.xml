@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="org.xr.happy.mapper.OrderDetailMapper">
+  <resultMap id="BaseResultMap" type="org.xr.happy.model.OrderDetail">
+    <!--
+      WARNING - @mbg.generated
+    -->
+    <id column="id" jdbcType="BIGINT" property="id" />
+    <result column="order_name" jdbcType="VARCHAR" property="orderName" />
+    <result column="remark" jdbcType="VARCHAR" property="remark" />
+    <result column="shopping_id" jdbcType="BIGINT" property="shoppingId" />
+    <result column="shopping_count" property="shoppingCount" jdbcType="INTEGER" />
+    <result column="status" jdbcType="TINYINT" property="status" />
+  </resultMap>
+</mapper>

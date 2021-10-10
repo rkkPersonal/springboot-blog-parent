@@ -17,15 +17,11 @@ public class OrderVo {
 
     private String orderId;
 
+    private String shoppingName;
+
+    private Long shoppingId;
+
     private String shopping;
 
-    public static void main(String[] args) throws Exception{
 
-        Pattern compile = Pattern.compile("/swagger.*/.*");
-
-        Matcher matcher = compile.matcher("/swagger-ui/index.html");
-
-        boolean matches = matcher.matches();
-        System.out.println(matches);
-    }
 }

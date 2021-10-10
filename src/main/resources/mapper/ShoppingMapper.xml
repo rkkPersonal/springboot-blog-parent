@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="org.xr.happy.mapper.ShoppingMapper">
+    <resultMap id="BaseResultMap" type="org.xr.happy.model.Shopping">
+        <!--
+          WARNING - @mbg.generated
+        -->
+        <id column="id" property="id" jdbcType="BIGINT"/>
+        <result column="shopping_name" property="shoppingName" jdbcType="VARCHAR"/>
+        <result column="shopping_detail" property="shoppingDetail" jdbcType="VARCHAR"/>
+        <result column="shopping_count" property="shoppingCount" jdbcType="INTEGER"/>
+        <result column="create_time" property="createTime" jdbcType="TIMESTAMP"/>
+        <result column="create_by" property="createBy" jdbcType="VARCHAR"/>
+        <result column="update_time" property="updateTime" jdbcType="TIMESTAMP"/>
+        <result column="updateBy" property="updateby" jdbcType="VARCHAR"/>
+    </resultMap>
+
+    <update id="updateShoppingCount">
+
+        update shopping
+        set shopping_count = shopping_count - #{count}
+        where id = #{id}
+          and shopping_count > 0
+    </update>
+</mapper>
