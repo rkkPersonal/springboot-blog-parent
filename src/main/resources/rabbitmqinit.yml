@@ -1,3 +1,4 @@
+#https://www.jianshu.com/p/bf6f520e31df
 rabbitmq:
   type: 'DIRECT'
   routingKey: 'all'
