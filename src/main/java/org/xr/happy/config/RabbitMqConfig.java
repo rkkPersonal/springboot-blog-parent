@@ -40,57 +40,57 @@ public class RabbitMqConfig {
     public static Long QUEUE_EXPIRATION = 4000L;
 
 
-    /**
+  /*  *//**
      * 申明队列
      *
      * @return
-     */
+     *//*
     @Bean
     Queue queue() {
         return new Queue(queueName, false);
     }
 
 
-    /**
+    *//**
      * 申明交换机
      *
      * @return
-     */
+     *//*
     @Bean
     TopicExchange exchange() {
         return new TopicExchange(topicExchangeName);
     }
 
-    /**
+    *//**
      * 将交换机与队列绑定
      *
      * @param queue
      * @param exchange
      * @return
-     */
+     *//*
     @Bean
     Binding binding(Queue queue, TopicExchange exchange) {
         return BindingBuilder.bind(queue).to(exchange).with("xr-blog-love");
     }
 
-    /*-----------------------------------------------------------------------------------------------------------------------*/
-    /*-----------------------------------------------------------------------------------------------------------------------*/
-    /*-----------------------------------------------------------------------------------------------------------------------*/
-    /**
+    *//*-----------------------------------------------------------------------------------------------------------------------*//*
+    *//*-----------------------------------------------------------------------------------------------------------------------*//*
+    *//*-----------------------------------------------------------------------------------------------------------------------*//*
+    *//**
      * 配置延时交换器
      *
      * @return
-     */
+     *//*
     @Bean
     DirectExchange delayExchange() {
         return new DirectExchange(DELAY_EXCHANGE);
     }
 
-    /**
+    *//**
      * 配置延时队列
      *
      * @return
-     */
+     *//*
     @Bean
     public Queue delayQueue() {
         return QueueBuilder.durable(DELAY_QUEUE)
@@ -103,11 +103,11 @@ public class RabbitMqConfig {
                 .build();
     }
 
-    /**
+    *//**
      * 将delayQueue2绑定延时交换机中，routingKey为队列名称
      *
      * @return
-     */
+     *//*
     @Bean
     Binding queueTTLBinding() {
         return BindingBuilder
@@ -117,11 +117,11 @@ public class RabbitMqConfig {
     }
 
 
-    /**
+    *//**
      * 设置处理队列
      *
      * @return
-     */
+     *//*
     @Bean
     public Queue delayProcess() {
         return QueueBuilder
@@ -129,21 +129,21 @@ public class RabbitMqConfig {
                 .build();
     }
 
-    /**
+    *//**
      * 配置处理交换器
      *
      * @return
-     */
+     *//*
     @Bean
     DirectExchange processExchange() {
         return new DirectExchange(PROCESS_EXCHANGE);
     }
 
-    /**
+    *//**
      * 将DLX绑定到实际消费队列
      *
      * @return
-     */
+     *//*
     @Bean
     Binding processBinding() {
         return BindingBuilder
@@ -151,7 +151,7 @@ public class RabbitMqConfig {
                 .to(processExchange())
                 .with(PROCESS_QUEUE);
     }
-
+*/
 
     /** 申明处理消息的适配器,指明用哪个方法处理接收消息,
      * 这里指明了用Receiver的receiveMessage()方法接收消息

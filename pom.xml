@@ -394,6 +394,8 @@
                 <includes>
                     <include>**/*.properties</include>
                     <include>**/*.xml</include>
+                    <include>**/*.yml</include>
+
                     <!--加载模板文件-->
                     <include>**/*.html</include>
                     <include>**/*.js</include>

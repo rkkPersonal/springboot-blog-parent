@@ -1,0 +1,8 @@
+rabbitmq:
+  type: 'DIRECT'
+  routingKey: 'all'
+  exchange: sxr-exchange-all
+  queueNames:
+    - xr-blog-love-queue
+    - order-create-queue
+    - sms-message-queue
