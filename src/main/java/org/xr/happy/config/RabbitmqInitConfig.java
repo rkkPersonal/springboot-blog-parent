@@ -6,6 +6,7 @@ import org.slf4j.LoggerFactory;
 import org.springframework.amqp.core.*;
 import org.springframework.beans.factory.SmartInitializingSingleton;
 import org.springframework.context.annotation.Configuration;
+import org.xr.happy.common.enums.MqEnum;
 import org.xr.happy.service.order.impl.OrderServiceImpl;
 
 import javax.annotation.Resource;
@@ -70,18 +71,18 @@ public class RabbitmqInitConfig implements SmartInitializingSingleton {
         //判断类型
         switch (type) {
             //直连模式
-            case "DIRECT":
+            case MqEnum.Type.DIRECT:
                 exchange = new DirectExchange(exchangeName, true, false, null);
                 break;
             //广播模式：
-            case "FANOUT":
+            case MqEnum.Type.FANOUT:
                 exchange = new FanoutExchange(exchangeName, true, false, null);
                 break;
             //通配符模式
-            case "TOPIC":
+            case MqEnum.Type.TOPIC:
                 exchange = new TopicExchange(exchangeName, true, false, null);
                 break;
-            case "HEADERS":
+            case MqEnum.Type.HEADERS:
                 exchange = new HeadersExchange(exchangeName, true, false, null);
                 break;
         }

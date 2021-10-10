@@ -6,7 +6,7 @@ import org.springframework.amqp.rabbit.core.RabbitTemplate;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import org.xr.happy.common.dto.Result;
-import org.xr.happy.common.enums.MqQueueEnum;
+import org.xr.happy.common.enums.MqEnum;
 import org.xr.happy.common.enums.OrderStatus;
 import org.xr.happy.common.vo.OrderVo;
 import org.xr.happy.service.order.OrderService;
@@ -48,10 +48,10 @@ public class OrderServiceImpl implements OrderService {
         orderDetail.setStatus(OrderStatus.CREATED.getStatus());
         orderDetail.setRemark("需要混合颜色款式的");
         orderDetailMapper.insert(orderDetail);
-        rabbitTemplate.convertAndSend(MqQueueEnum.SMS_MESSAGE_QUEUE.getQueue(), orderDetail);
+        rabbitTemplate.convertAndSend(MqEnum.SMS_MESSAGE_QUEUE.getQueue(), orderDetail);
 
         // 更新订单状态和库存信息
-        rabbitTemplate.convertAndSend(MqQueueEnum.REDUCE_STORAGE_QUEUE.getQueue(), orderDetail);
+        rabbitTemplate.convertAndSend(MqEnum.REDUCE_STORAGE_QUEUE.getQueue(), orderDetail);
         return Result.ok();
     }
 }

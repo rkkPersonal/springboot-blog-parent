@@ -5,7 +5,6 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.amqp.rabbit.annotation.RabbitListener;
 import org.springframework.stereotype.Component;
-import org.xr.happy.common.enums.MqQueueEnum;
 import org.xr.happy.common.enums.OrderStatus;
 import org.xr.happy.mapper.OrderDetailMapper;
 import org.xr.happy.mapper.ShoppingMapper;
