@@ -4,6 +4,7 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.amqp.rabbit.core.RabbitTemplate;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 import org.xr.happy.common.dto.Result;
 import org.xr.happy.common.enums.OrderStatus;
 import org.xr.happy.common.vo.OrderVo;
@@ -30,12 +31,13 @@ public class OrderServiceImpl implements OrderService {
     private RabbitTemplate rabbitTemplate;
 
 
+    @Transactional(rollbackFor = Exception.class)
     @Override
     public Result<OrderVo> createOrder(OrderVo orderVo) {
         Shopping shopping = new Shopping();
         shopping.setId(orderVo.getShoppingId());
         Shopping shopInfo = shoppingMapper.selectOne(shopping);
-        if (shopInfo.getShoppingCount().intValue()==0){
+        if (shopInfo.getShoppingCount().intValue() == 0) {
             return Result.error("该商品已经售完了");
         }
 
@@ -45,8 +47,10 @@ public class OrderServiceImpl implements OrderService {
         orderDetail.setStatus(OrderStatus.CREATED.getStatus());
         orderDetail.setRemark("需要混合颜色款式的");
         orderDetailMapper.insert(orderDetail);
+        rabbitTemplate.convertAndSend("sms-message", orderDetail);
+
+        // 更新订单状态和库存信息
         rabbitTemplate.convertAndSend("xr-blog-love", orderDetail);
-        rabbitTemplate.convertAndSend("",orderDetail);
         return Result.ok();
     }
 }
