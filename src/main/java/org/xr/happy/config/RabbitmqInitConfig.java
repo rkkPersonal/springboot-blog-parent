@@ -85,6 +85,8 @@ public class RabbitmqInitConfig implements SmartInitializingSingleton {
             case MqEnum.Type.HEADERS:
                 exchange = new HeadersExchange(exchangeName, true, false, null);
                 break;
+            default:
+                break;
         }
         //设置延迟队列
         exchange.setDelayed(false);
