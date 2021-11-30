@@ -1,9 +1,13 @@
 package org.xr.happy.model;
 
 import javax.persistence.*;
+import java.io.Serializable;
 
+/**
+ * @author Steven
+ */
 @Table(name = "order_detail")
-public class OrderDetail {
+public class OrderDetail implements Serializable {
     @Id
     @GeneratedValue(generator = "JDBC")
     private Long id;

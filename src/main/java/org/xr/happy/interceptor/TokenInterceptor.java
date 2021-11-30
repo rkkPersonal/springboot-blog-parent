@@ -37,7 +37,7 @@ public class TokenInterceptor implements HandlerInterceptor {
 
     @Override
     public boolean preHandle(HttpServletRequest request, HttpServletResponse response, Object handler) throws Exception {
-        String username = request.getHeader("token");
+      /*  String username = request.getHeader("token");
         logger.info("token is :{}", username);
         if (StringUtils.isNotBlank(username)) {
             User user = new User();
@@ -61,8 +61,8 @@ public class TokenInterceptor implements HandlerInterceptor {
             }
         }
 
-        responseBody(response);
-        return false;
+        responseBody(response);*/
+        return true;
     }
 
     private void responseBody(HttpServletResponse response) throws IOException {

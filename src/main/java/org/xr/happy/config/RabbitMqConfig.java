@@ -1,10 +1,10 @@
 package org.xr.happy.config;
-
-import org.springframework.amqp.core.*;
-import org.springframework.context.annotation.Bean;
-import org.springframework.context.annotation.Configuration;
-
-@Configuration
+//
+//import org.springframework.amqp.core.*;
+//import org.springframework.context.annotation.Bean;
+//import org.springframework.context.annotation.Configuration;
+//
+//@Configuration
 public class RabbitMqConfig {
 
     public static final String topicExchangeName = "blog-exchange";

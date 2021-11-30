@@ -21,11 +21,13 @@ import org.springframework.http.HttpEntity;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpMethod;
 import org.springframework.http.ResponseEntity;
+import org.springframework.test.context.ActiveProfiles;
 import org.springframework.test.context.junit4.SpringRunner;
 import org.springframework.web.client.RestTemplate;
 import org.xr.happy.common.bean.CsvUser;
 import org.xr.happy.config.RabbitMqConfig;
 import org.xr.happy.config.RedisLock;
+import org.xr.happy.mapper.UserMapper;
 import org.xr.happy.model.User;
 import org.xr.happy.service.UserService;
 import org.xr.happy.service.mail.MailService;
@@ -43,6 +45,7 @@ import java.util.concurrent.atomic.AtomicInteger;
 
 @SpringBootTest(classes = Application.class)
 @RunWith(value = SpringRunner.class)
+@ActiveProfiles("dev")
 class ApplicationTests {
 
     @Autowired
@@ -55,12 +58,39 @@ class ApplicationTests {
     private RestTemplate restTemplate;
     @Resource
     private MailService mailService;
-
+    @Autowired
+    private UserMapper userMapper;
+    public static ExecutorService executorServicess = Executors.newFixedThreadPool(50);
 
     private static int CURRENT_COUNTS = 200;
     private static AtomicInteger atomicInteger = new AtomicInteger();
 
     public static ExecutorService executorService = Executors.newFixedThreadPool(CURRENT_COUNTS);
+
+
+    @Test
+    public void testMysqlConnection() throws IOException {
+
+        CountDownLatch countDownLatch = new CountDownLatch(50);
+
+        for (int i = 0; i < 50; i++) {
+            executorServicess.submit(()->{
+
+                countDownLatch.countDown();;
+                try {
+                    countDownLatch.await();
+                } catch (InterruptedException e) {
+                    e.printStackTrace();
+                }
+                System.out.println("----------------------");
+                userMapper.selectAll();
+
+
+            });
+        }
+
+        System.in.read();
+    }
 
     @Test
     public void testSendEmail() throws MessagingException {

@@ -26,7 +26,7 @@ public class OrderRabbitMqListener extends BaseMq<String> {
     @Autowired
     private UserMapper userMapper;
 
-    @RabbitListener(queues = "xr-blog-love")
+    @RabbitListener(queues = "xr-blog-love-queue")
     @Override
     protected void process(Channel channel, String msg) {
 

@@ -6,7 +6,6 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.amqp.rabbit.annotation.RabbitListener;
 import org.springframework.stereotype.Component;
-import org.xr.happy.config.RabbitMqConfig;
 import org.xr.happy.model.User;
 
 import java.util.concurrent.TimeUnit;
@@ -21,7 +20,7 @@ public class OrderTimeRabbitMqListener extends BaseMq<User> {
     private static final Logger logger = LoggerFactory.getLogger(OrderTimeRabbitMqListener.class);
 
 
-    @RabbitListener(queues = RabbitMqConfig.PROCESS_QUEUE)
+    @RabbitListener(queues = "process.queue")
     @Override
     protected void process(Channel channel, User msg) {
         logger.info("开始消费延时队列:{}", JSON.toJSONString(msg));
@@ -44,7 +43,7 @@ public class OrderTimeRabbitMqListener extends BaseMq<User> {
 
     @Override
     public String key() {
-        return RabbitMqConfig.PROCESS_QUEUE;
+        return "process.queue";
     }
 
     @Override

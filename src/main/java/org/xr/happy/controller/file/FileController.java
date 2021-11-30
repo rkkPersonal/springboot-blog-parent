@@ -9,9 +9,12 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
+import org.xr.happy.common.dto.Result;
 import org.xr.happy.common.utils.FileUtils;
+import org.xr.happy.common.vo.FileInfo;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -23,7 +26,13 @@ public class FileController {
 
     private static final Logger logger = LoggerFactory.getLogger(FileController.class);
 
+    @PostMapping("/upload")
+    public Result upload(FileInfo fileInfo) throws Exception {
+        System.out.println(fileInfo);
+        return Result.ok();
 
+
+    }
     @GetMapping("/download")
     public void download(HttpServletRequest request, HttpServletResponse response) throws Exception {
         logger.info("download file start .....");

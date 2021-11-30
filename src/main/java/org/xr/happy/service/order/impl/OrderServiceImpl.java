@@ -46,12 +46,15 @@ public class OrderServiceImpl implements OrderService {
         orderDetail.setOrderName(orderVo.getShoppingName());
         orderDetail.setShoppingId(orderVo.getShoppingId());
         orderDetail.setStatus(OrderStatus.CREATED.getStatus());
-        orderDetail.setRemark("需要混合颜色款式的");
+        orderDetail.setRemark("666");
         orderDetailMapper.insert(orderDetail);
-        rabbitTemplate.convertAndSend(MqEnum.SMS_MESSAGE_QUEUE.getQueue(), orderDetail);
 
         // 更新订单状态和库存信息
         rabbitTemplate.convertAndSend(MqEnum.REDUCE_STORAGE_QUEUE.getQueue(), orderDetail);
+        
+        // 发送短信通知。
+        rabbitTemplate.convertAndSend(MqEnum.SMS_MESSAGE_QUEUE.getQueue(), orderDetail);
+
         return Result.ok();
     }
 }
