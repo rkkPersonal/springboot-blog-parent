@@ -9,7 +9,10 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Propagation;
 import org.springframework.transaction.annotation.Transactional;
 import org.xr.happy.common.constant.PermissionConstant;
+import org.xr.happy.common.enums.OrderStatus;
+import org.xr.happy.mapper.OrderDetailMapper;
 import org.xr.happy.mapper.UserMapper;
+import org.xr.happy.model.OrderDetail;
 import org.xr.happy.model.User;
 import org.xr.happy.service.UserService;
 
@@ -22,18 +25,25 @@ import java.util.List;
 public class UserServiceImpl implements UserService {
 
     private static final Logger logger = LoggerFactory.getLogger(UserServiceImpl.class);
-
+    @Resource
+    private OrderDetailMapper orderDetailMapper;
 
     @Autowired
     private RabbitTemplate rabbitTemplate;
     @Resource
     private UserMapper userMapper;
 
+    @Transactional(propagation = Propagation.REQUIRES_NEW)
     @Override
     public boolean addUser(User user) {
-        user.setCreateTime(new Date());
-        user.setUpdateTime(new Date());
-        return userMapper.insert(user)>0?true:false;
+        OrderDetail orderDetail = new OrderDetail();
+        orderDetail.setOrderName("苹果手机");
+        orderDetail.setShoppingId(2L);
+        orderDetail.setStatus(OrderStatus.CREATED.getStatus());
+        orderDetail.setRemark("666");
+        orderDetailMapper.insert(orderDetail);
+
+        return orderDetailMapper.insert(orderDetail)>0?true:false;
     }
 
     @Transactional(propagation = Propagation.REQUIRED)

@@ -9,4 +9,8 @@ import org.xr.happy.common.vo.OrderVo;
 public interface OrderService {
 
     public Result<OrderVo> createOrder(OrderVo orderVo);
+
+    public Result<OrderVo> methodA();
+
+    public Result<OrderVo> methodB();
 }

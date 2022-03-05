@@ -8,10 +8,10 @@
         <version>2.3.7.RELEASE</version>
         <relativePath/> <!-- lookup parent from repository -->
     </parent>
-    <groupId>org.xr.org.xr.happy</groupId>
-    <artifactId>springboot-blog-parent</artifactId>
+    <groupId>org.xr</groupId>
+    <artifactId>backend-service</artifactId>
     <version>0.0.1-SNAPSHOT</version>
-    <name>springboot-blog-parent</name>
+    <name>backend-service</name>
     <description>This is from parent jar dependencies</description>
 
     <properties>
